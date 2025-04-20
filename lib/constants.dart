@@ -5,5 +5,4 @@ class Constants {
   static const kGtSectraFine = 'Lora';
    static const kPrimaryColor = Colors.white;
 
-
 }
