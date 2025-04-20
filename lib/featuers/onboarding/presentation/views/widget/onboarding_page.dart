@@ -108,7 +108,7 @@ SmoothPageIndicator(
         curve: Curves.easeInOut,
       );
     } else {
-     GoRouter.of(context).push(AppRouter.klogin);
+      GoRouter.of(context).pushReplacement(AppRouter.kChoosePage);
     }
   },
 ),
