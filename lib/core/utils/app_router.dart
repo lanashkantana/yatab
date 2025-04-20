@@ -16,6 +16,9 @@ class AppRouter {
  static const kChoosePage = '/kChoosePage';
 static const kRegisterPage = '/kRegisterPage';
 
+
+
+
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -42,6 +45,7 @@ static const kRegisterPage = '/kRegisterPage';
         path: kRegisterPage,
         builder: (context, state) => const RegisterPage(),
       ), 
+      
     ],
   );
 }
