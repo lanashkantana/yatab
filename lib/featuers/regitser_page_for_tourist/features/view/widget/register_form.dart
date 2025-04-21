@@ -73,7 +73,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                         backgroundImage: _selectedImage != null ? FileImage(_selectedImage!) : null,
                         child: _selectedImage == null
                             ? Text(
-                                "Choose Image",
+                                "Choose Your Photo",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(color: AppColors.black),
                               )

@@ -9,6 +9,7 @@ import 'package:go_router/go_router.dart';
 import 'package:test/core/utils/app_router.dart';
 import 'package:test/core/utils/color.dart';
 import 'package:test/core/widget/custom_button.dart';
+import 'package:test/core/widget/custom_text_field.dart';
 import 'package:test/core/widget/validation.dart';
 import 'package:test/featuers/regitser_page_for_tourist/features/view/widget/register_form.dart';
 
@@ -32,6 +33,12 @@ class _RegisterPageForGuideBodyState extends State<RegisterPageForGuideBody> {
   final TextEditingController dateController = TextEditingController();
   final TextEditingController genderController = TextEditingController();
   final TextEditingController nationalityController = TextEditingController();
+  //
+ final TextEditingController yearOfExperienceController = TextEditingController();
+  
+   
+
+
 
 
   final Validation validation = Validation();
@@ -111,13 +118,12 @@ class _RegisterPageForGuideBodyState extends State<RegisterPageForGuideBody> {
                 ),
               ),
               child: Padding(
-                padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     // Choose photo
-                   
-                    SizedBox(height: 20.h),
+                 10.verticalSpace,
                     RegistrationForm(
                       firstNameController: firstNameController,
                       lastNameController: lastNameController,
@@ -129,7 +135,26 @@ class _RegisterPageForGuideBodyState extends State<RegisterPageForGuideBody> {
                       genderController: genderController,
                       nationalityController: nationalityController,
                     ),
-                    SizedBox(height: 20.h),
+               
+
+
+
+  CustomFormTextField(
+          keyboardType: TextInputType.number,
+          controller: yearOfExperienceController,
+          obscureText: obsecureTextReapet,
+          prefixIcon: Icon(Icons.date_range_outlined,
+          
+             color: Color(0xFF002E53),
+          ),
+         
+          labelText: "years ",
+          hintText: "years Of Experience",
+        ),
+
+
+
+                   
                     CustomButton(
                       text: "Register",
                       ontap: () {

@@ -7,7 +7,7 @@ class CustomFormTextField extends StatefulWidget {
     super.key,
     required this.hintText,
     required this.obscureText,
-    required this.prefixIcon,
+     this.prefixIcon,
     required this.controller,
     required this.keyboardType,
     this.labelText,
@@ -28,7 +28,7 @@ class CustomFormTextField extends StatefulWidget {
   final TextStyle? labelStyle;
   final Color? fillColor;
   final TextStyle? hintStyle;
-  final Widget prefixIcon;
+  final Widget? prefixIcon;
   final TextEditingController controller;
   final TextInputType keyboardType;
   final bool readOnly;

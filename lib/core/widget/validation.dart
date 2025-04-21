@@ -59,7 +59,7 @@ class Validation {
     return;
   }
 
-  GoRouter.of(context).push(AppRouter.kHomePage);
+  GoRouter.of(context).pushReplacement(AppRouter.kBottomNavBar);
 }
 
    
