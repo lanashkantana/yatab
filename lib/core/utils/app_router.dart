@@ -5,7 +5,8 @@ import 'package:test/featuers/login_page/presentation/view/login_page.dart';
 import 'package:test/featuers/login_page/presentation/view/widget/choose_page.dart';
 import 'package:test/featuers/login_page_for_guide/presentation/view/login_page.dart';
 import 'package:test/featuers/onboarding/presentation/views/onboarding.dart';
-import 'package:test/featuers/register_page_for_guide/features/view/widget/register_page_for_guide_body.dart';
+import 'package:test/featuers/register_page_for_guide/features/view/register_page_for_guide.dart';
+
 import 'package:test/featuers/regitser_page_for_tourist/features/view/register_page.dart';
 import 'package:test/featuers/splash_screen/presentation/view/splash_screen.dart';
 
@@ -17,7 +18,7 @@ class AppRouter {
  static const kHomePage = '/kHomePage';
  static const kChoosePage = '/kChoosePage';
 static const kRegisterPage = '/kRegisterPage';
-static const kRegisterPageForGuideBody = '/kRegisterPageForGuideBody';
+static const kRegisterPageForGuide = '/RegisterPageForGuide';
 static const kLoginPageForGuide = '/kLoginPageForGuide';
 
 
@@ -53,8 +54,8 @@ static const kLoginPageForGuide = '/kLoginPageForGuide';
         builder: (context, state) => const RegisterPage(),
       ), 
        GoRoute(
-        path: kRegisterPageForGuideBody,
-        builder: (context, state) => const RegisterPageForGuideBody(),
+        path: kRegisterPageForGuide,
+        builder: (context, state) => const RegisterPageForGuide(),
       ), 
        GoRoute(
         path: kLoginPageForGuide,

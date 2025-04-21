@@ -12,7 +12,7 @@ final GestureTapCallback ontap;
 
   @override
   Widget build(BuildContext context) {
-    return  Padding(padding: EdgeInsets.symmetric(horizontal: 20),
+    return  Padding(padding: EdgeInsets.symmetric(horizontal: 10),
 child: InkWell(
 onTap: ontap,
 child: Container(
@@ -21,7 +21,7 @@ child: Container(
     color: AppColors.lightBlue,
     
 
-    borderRadius: BorderRadius.circular(16)),
+    borderRadius: BorderRadius.circular(35)),
 
 
 height: 60.h,

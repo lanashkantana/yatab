@@ -189,7 +189,7 @@ class _LoginPageForGuideBodyState extends State<LoginPageForGuideBody> {
                           SizedBox(width: 5.w),
                           InkWell(
                             onTap: () {
-                              GoRouter.of(context).push(AppRouter.kRegisterPageForGuideBody);
+                              GoRouter.of(context).push(AppRouter.kRegisterPageForGuide);
                             },
                             child: Text("Register", style: TextStyle(color: AppColors.lightBlue,fontSize: 16,fontWeight: FontWeight.bold)),
                           ),
