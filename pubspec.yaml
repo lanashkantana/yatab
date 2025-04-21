@@ -24,11 +24,12 @@ dependencies:
   flutter_screenutil: ^5.9.0
   smooth_page_indicator: ^1.2.1
   awesome_dialog: ^3.2.1
-  # icons_flutter: ^0.0.5
+  icons_flutter: ^0.0.5
   intl_phone_field: ^3.2.0
   country_picker: ^2.0.21
   image_picker: ^1.1.2
   form_validation: ^3.2.0
+  curved_navigation_bar: ^1.0.6
   
   
 
