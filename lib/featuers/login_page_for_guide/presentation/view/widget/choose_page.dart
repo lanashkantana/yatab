@@ -39,12 +39,12 @@ class ChoosePage extends StatelessWidget {
         SizedBox(height: 20.h,),
           CustomButton(text: "Guide", ontap: (){
 
-   GoRouter.of(context).pushReplacement(AppRouter.kRegisterPageForGuideBody);
+   GoRouter.of(context).pushReplacement(AppRouter.kRegisterPage);
           }),
           SizedBox(height: 20.h,),
           
             CustomButton(text: "Tourist", ontap: (){
-              GoRouter.of(context).pushReplacement(AppRouter.kRegisterPage);
+              GoRouter.of(context).pushReplacement(AppRouter.klogin);
             }),
         
         

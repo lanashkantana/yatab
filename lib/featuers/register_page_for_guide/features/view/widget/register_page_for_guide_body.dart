@@ -1,4 +1,7 @@
-import 'dart:io';
+
+
+
+
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,17 +10,16 @@ import 'package:test/core/utils/app_router.dart';
 import 'package:test/core/utils/color.dart';
 import 'package:test/core/widget/custom_button.dart';
 import 'package:test/core/widget/validation.dart';
-import 'package:test/featuers/regitser_page/features/view/widget/image_picker.dart';
-import 'package:test/featuers/regitser_page/features/view/widget/register_form.dart';
+import 'package:test/featuers/regitser_page_for_tourist/features/view/widget/register_form.dart';
 
-class RegitserPageBody extends StatefulWidget {
-  const RegitserPageBody({super.key});
+class RegisterPageForGuideBody extends StatefulWidget {
+  const RegisterPageForGuideBody({super.key});
 
   @override
-  State<RegitserPageBody> createState() => _RegitserPageBodyState();
+  State<RegisterPageForGuideBody> createState() => _RegisterPageForGuideBodyState();
 }
 
-class _RegitserPageBodyState extends State<RegitserPageBody> {
+class _RegisterPageForGuideBodyState extends State<RegisterPageForGuideBody> {
   bool obscureText = false;
   bool obsecureTextReapet = false;
 
@@ -30,7 +32,7 @@ class _RegitserPageBodyState extends State<RegitserPageBody> {
   final TextEditingController dateController = TextEditingController();
   final TextEditingController genderController = TextEditingController();
   final TextEditingController nationalityController = TextEditingController();
-  File? _selectedImage;
+
 
   final Validation validation = Validation();
 
@@ -66,14 +68,7 @@ class _RegitserPageBodyState extends State<RegitserPageBody> {
     });
   }
 
-  Future<void> _pickImage() async {
-    final pickedImage = await CustomImagePicker.chooseImageSource(context);
-    if (pickedImage != null) {
-      setState(() {
-        _selectedImage = pickedImage;
-      });
-    }
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +95,7 @@ class _RegitserPageBodyState extends State<RegitserPageBody> {
                   ),
                   SizedBox(height: 5.h),
                   Text(
-                    "Create account for Tourist",
+                    "Create account for Guide",
                     style: TextStyle(fontSize: 15.sp, color: AppColors.white),
                   ),
                   SizedBox(height: 5.h),
@@ -121,21 +116,7 @@ class _RegitserPageBodyState extends State<RegitserPageBody> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     // Choose photo
-                    InkWell(
-                      onTap: _pickImage, // Call the method to pick an image
-                      child: CircleAvatar(
-                        radius: 45,
-                        backgroundColor: const Color.fromARGB(255, 191, 194, 196),
-                        backgroundImage: _selectedImage != null ? FileImage(_selectedImage!) : null,
-                        child: _selectedImage == null
-                            ? Text(
-                                "Choose Image",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(color: AppColors.black),
-                              )
-                            : null,
-                      ),
-                    ),
+                   
                     SizedBox(height: 20.h),
                     RegistrationForm(
                       firstNameController: firstNameController,
@@ -171,7 +152,7 @@ class _RegitserPageBodyState extends State<RegitserPageBody> {
                         SizedBox(width: 5.w),
                         InkWell(
                           onTap: () {
-                            GoRouter.of(context).push(AppRouter.klogin);
+                            GoRouter.of(context).push(AppRouter.kLoginPageForGuide);
                           },
                           child: Text(
                             "Login",

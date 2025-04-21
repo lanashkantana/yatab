@@ -1,6 +1,12 @@
+import 'dart:io';
+
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:test/core/utils/color.dart';
 import 'package:test/core/widget/custom_text_field.dart';
+import 'package:test/featuers/regitser_page_for_tourist/features/view/widget/image_picker.dart';
 
 class RegistrationForm extends StatefulWidget {
   final TextEditingController firstNameController;
@@ -34,6 +40,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
   bool obscureText = false;
   bool obsecureTextReapet = false;
   DateTime selectedDate = DateTime.now();
+    File? _selectedImage;
 
   void toggleVisibility() {
     setState(() {
@@ -46,11 +53,34 @@ class _RegistrationFormState extends State<RegistrationForm> {
       obsecureTextReapet = !obsecureTextReapet;
     });
   }
-
+  Future<void> _pickImage() async {
+    final pickedImage = await CustomImagePicker.chooseImageSource(context);
+    if (pickedImage != null) {
+      setState(() {
+        _selectedImage = pickedImage;
+      });
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
+         InkWell(
+                      onTap: _pickImage, // Call the method to pick an image
+                      child: CircleAvatar(
+                        radius: 45,
+                        backgroundColor: const Color.fromARGB(255, 191, 194, 196),
+                        backgroundImage: _selectedImage != null ? FileImage(_selectedImage!) : null,
+                        child: _selectedImage == null
+                            ? Text(
+                                "Choose Image",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(color: AppColors.black),
+                              )
+                            : null,
+                      ),
+                    ),
+                     SizedBox(height: 20.h),
         CustomFormTextField(
           keyboardType: TextInputType.text,
           controller: widget.firstNameController,
@@ -59,8 +89,8 @@ class _RegistrationFormState extends State<RegistrationForm> {
           labelText: "First Name",
           hintText: "Enter your first name",
         ),
-        SizedBox(height: 10),
-        
+        10.verticalSpace,
+
         CustomFormTextField(
           keyboardType: TextInputType.text,
           controller: widget.lastNameController,
@@ -69,7 +99,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
           labelText: "Last Name",
           hintText: "Enter your last name",
         ),
-        SizedBox(height: 10),
+        10.verticalSpace,
 
         CustomFormTextField(
           keyboardType: TextInputType.emailAddress,
@@ -79,8 +109,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
           labelText: "Email",
           hintText: "Enter your email",
         ),
-        SizedBox(height: 10),
-
+        10.verticalSpace,
         CustomFormTextField(
           keyboardType: TextInputType.visiblePassword,
           controller: widget.passwordController,
@@ -96,7 +125,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
           labelText: "Password",
           hintText: "Enter your password",
         ),
-        SizedBox(height: 10),
+        10.verticalSpace,
 
         CustomFormTextField(
           keyboardType: TextInputType.visiblePassword,
@@ -113,17 +142,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
           labelText: "Verify Password",
           hintText: "Repeat password",
         ),
-        SizedBox(height: 10),
-
-        CustomFormTextField(
-          keyboardType: TextInputType.number,
-          controller: widget.phoneNumberController,
-          obscureText: false,
-          prefixIcon: Icon(Icons.phone_android_outlined, color: Color(0xFF002E53)),
-          labelText: "Phone Number",
-          hintText: "Enter your phone number",
-        ),
-        SizedBox(height: 10),
+        10.verticalSpace,
 
         CustomFormTextField(
           controller: widget.dateController,
@@ -149,7 +168,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
           prefixIcon: Icon(Icons.date_range_outlined, color: Color(0xFF002E53)),
           hintText: "Choose your birth date",
         ),
-        SizedBox(height: 10),
+        10.verticalSpace,
 
         CustomFormTextField(
           keyboardType: TextInputType.none,
@@ -159,22 +178,26 @@ class _RegistrationFormState extends State<RegistrationForm> {
           onTap: () {},
           prefixIcon: Icon(Icons.person, color: Color(0xFF002E53)),
           suffixIcon: PopupMenuButton<String>(
-            icon: Icon(Icons.arrow_drop_down_rounded, size: 50, color: Color(0xFF002E53)),
+            icon: Icon(
+              Icons.arrow_drop_down_rounded,
+              size: 50,
+              color: Color(0xFF002E53),
+            ),
             onSelected: (String value) {
               setState(() {
                 widget.genderController.text = value;
               });
             },
-            itemBuilder: (BuildContext context) => [
-              PopupMenuItem(value: 'Male', child: Text('Male')),
-              PopupMenuItem(value: 'Female', child: Text('Female')),
-            ],
+            itemBuilder:
+                (BuildContext context) => [
+                  PopupMenuItem(value: 'Male', child: Text('Male')),
+                  PopupMenuItem(value: 'Female', child: Text('Female')),
+                ],
           ),
           labelText: "Gender",
           hintText: "Select gender",
         ),
-        SizedBox(height: 10),
-
+        10.verticalSpace,
         CustomFormTextField(
           controller: widget.nationalityController,
           keyboardType: TextInputType.none,
@@ -200,7 +223,57 @@ class _RegistrationFormState extends State<RegistrationForm> {
               ),
             );
           },
-          suffixIcon: Icon(Icons.arrow_drop_down_rounded, size: 50, color: Color(0xFF002E53)),
+          suffixIcon: Icon(
+            Icons.arrow_drop_down_rounded,
+            size: 50,
+            color: Color(0xFF002E53),
+          ),
+        ),
+        15.verticalSpace,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: IntlPhoneField(
+            controller: widget.phoneNumberController,
+            initialCountryCode: 'SY',
+            decoration: InputDecoration(
+              contentPadding: const EdgeInsets.all(25),
+              filled: false,
+              fillColor: const Color(0xFFD9D9D9),
+              labelText: "Phone Number",
+              hintText: "Enter your phone number",
+              labelStyle: TextStyle(
+                color: Colors.black,
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+              ),
+              hintStyle: TextStyle(color: Colors.black, fontSize: 13),
+              prefixIcon: Icon(
+                Icons.phone_android_outlined,
+                color: Color(0xFF002E53),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(50),
+                borderSide: BorderSide(color: Colors.black, width: 1.3),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(50),
+                borderSide: BorderSide(color: Colors.black, width: 1.3),
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(50),
+              ),
+            ),
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            onChanged: (phone) {
+              widget.phoneNumberController.text = phone.completeNumber;
+            },
+            validator: (value) {
+              if (value == null || value.number.isEmpty) {
+                return 'Phone number is required';
+              }
+              return null;
+            },
+          ),
         ),
       ],
     );
