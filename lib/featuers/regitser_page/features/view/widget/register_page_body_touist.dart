@@ -1,16 +1,14 @@
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test/core/utils/app_router.dart';
-import 'package:test/core/utils/assets.dart';
 import 'package:test/core/utils/color.dart';
 import 'package:test/core/widget/custom_button.dart';
 import 'package:test/core/widget/validation.dart';
+import 'package:test/featuers/regitser_page/features/view/widget/image_picker.dart';
 import 'package:test/featuers/regitser_page/features/view/widget/register_form.dart';
-
-
-
 
 class RegitserPageBody extends StatefulWidget {
   const RegitserPageBody({super.key});
@@ -32,7 +30,7 @@ class _RegitserPageBodyState extends State<RegitserPageBody> {
   final TextEditingController dateController = TextEditingController();
   final TextEditingController genderController = TextEditingController();
   final TextEditingController nationalityController = TextEditingController();
-
+  File? _selectedImage;
 
   final Validation validation = Validation();
 
@@ -41,8 +39,7 @@ class _RegitserPageBodyState extends State<RegitserPageBody> {
   @override
   void initState() {
     super.initState();
-    dateController.text =
-        "${selectedDate.day}-${selectedDate.month}-${selectedDate.year}";
+    dateController.text = "${selectedDate.day}-${selectedDate.month}-${selectedDate.year}";
   }
 
   @override
@@ -69,17 +66,22 @@ class _RegitserPageBodyState extends State<RegitserPageBody> {
     });
   }
 
+  Future<void> _pickImage() async {
+    final pickedImage = await CustomImagePicker.chooseImageSource(context);
+    if (pickedImage != null) {
+      setState(() {
+        _selectedImage = pickedImage;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
-          colors: [
-            Colors.blue[900]!,
-            Colors.blue[800]!,
-            Colors.blue[400]!,
-          ],
+          colors: [Colors.blue[900]!, Colors.blue[800]!, Colors.blue[400]!],
         ),
       ),
       child: SingleChildScrollView(
@@ -92,9 +94,15 @@ class _RegitserPageBodyState extends State<RegitserPageBody> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text("Register", style: TextStyle(fontSize: 40.sp, color: AppColors.white)),
+                  Text(
+                    "Register",
+                    style: TextStyle(fontSize: 40.sp, color: AppColors.white),
+                  ),
                   SizedBox(height: 5.h),
-                  Text("create account for Tourist", style: TextStyle(fontSize: 15.sp, color: AppColors.white)),
+                  Text(
+                    "Create account for Tourist",
+                    style: TextStyle(fontSize: 15.sp, color: AppColors.white),
+                  ),
                   SizedBox(height: 5.h),
                 ],
               ),
@@ -112,24 +120,35 @@ class _RegitserPageBodyState extends State<RegitserPageBody> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    //chose photo
-                    Image.asset(AssetsData.logowithouttext, width: 150.w),
-
-        RegistrationForm(
-          firstNameController: firstNameController,
-          lastNameController: lastNameController,
-          emailController: emailController,
-          passwordController: passwordController,
-          verifyPasswordController: verifyPasswordController,
-          phoneNumberController: phoneNumerController,
-          dateController: dateController,
-          genderController: genderController,
-          nationalityController: nationalityController,
-        ),
-                    //
-
+                    // Choose photo
+                    InkWell(
+                      onTap: _pickImage, // Call the method to pick an image
+                      child: CircleAvatar(
+                        radius: 45,
+                        backgroundColor: const Color.fromARGB(255, 191, 194, 196),
+                        backgroundImage: _selectedImage != null ? FileImage(_selectedImage!) : null,
+                        child: _selectedImage == null
+                            ? Text(
+                                "Choose Image",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(color: AppColors.black),
+                              )
+                            : null,
+                      ),
+                    ),
                     SizedBox(height: 20.h),
-
+                    RegistrationForm(
+                      firstNameController: firstNameController,
+                      lastNameController: lastNameController,
+                      emailController: emailController,
+                      passwordController: passwordController,
+                      verifyPasswordController: verifyPasswordController,
+                      phoneNumberController: phoneNumerController,
+                      dateController: dateController,
+                      genderController: genderController,
+                      nationalityController: nationalityController,
+                    ),
+                    SizedBox(height: 20.h),
                     CustomButton(
                       text: "Register",
                       ontap: () {
@@ -142,24 +161,33 @@ class _RegitserPageBodyState extends State<RegitserPageBody> {
                       },
                     ),
                     SizedBox(height: 18.h),
-
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Don't have an account?", style: TextStyle(fontSize: 16)),
+                        Text(
+                          "Don't have an account?",
+                          style: TextStyle(fontSize: 16),
+                        ),
                         SizedBox(width: 5.w),
                         InkWell(
                           onTap: () {
                             GoRouter.of(context).push(AppRouter.klogin);
                           },
-                          child: Text("Login", style: TextStyle(fontWeight: FontWeight.bold,color: AppColors.lightBlue,fontSize: 16)),
+                          child: Text(
+                            "Login",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.lightBlue,
+                              fontSize: 16,
+                            ),
+                          ),
                         ),
                       ],
                     ),
                   ],
                 ),
               ),
-            ),
+            )
           ],
         ),
       ),
