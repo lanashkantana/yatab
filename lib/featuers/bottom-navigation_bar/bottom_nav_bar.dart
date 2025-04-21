@@ -47,7 +47,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
             backgroundColor: Colors.transparent,
             buttonBackgroundColor: AppColors.lightgrey,
             index: index,
-            height: 60.h,
+            height: 59.h,
             animationCurve: Curves.easeIn,
             animationDuration: Duration(milliseconds: 300),
             onTap: (int selectedIndex) {
