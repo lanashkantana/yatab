@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:test/core/utils/color.dart';
+import 'package:test/core/utils/app_color.dart';
+
 
 class CustomButton extends StatelessWidget {
 final String text;
