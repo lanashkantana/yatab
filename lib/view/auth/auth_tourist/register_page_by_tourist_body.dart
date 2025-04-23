@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -30,6 +32,8 @@ class _RegisterPageByTouristBodyState extends State<RegisterPageByTouristBody> {
   final TextEditingController dateController = TextEditingController();
   final TextEditingController genderController = TextEditingController();
   final TextEditingController nationalityController = TextEditingController();
+  final TextEditingController yearOfExperienceController =
+      TextEditingController();
 
   final Validation validation = Validation();
 
@@ -68,8 +72,9 @@ class _RegisterPageByTouristBodyState extends State<RegisterPageByTouristBody> {
 
   @override
   Widget build(BuildContext context) {
+    File? selectedImage;
     return Scaffold(
-        extendBody: true,
+      extendBody: true,
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -113,6 +118,7 @@ class _RegisterPageByTouristBodyState extends State<RegisterPageByTouristBody> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                      // داخل build:
                       RegistrationForm(
                         firstNameController: firstNameController,
                         lastNameController: lastNameController,
@@ -128,14 +134,22 @@ class _RegisterPageByTouristBodyState extends State<RegisterPageByTouristBody> {
                       CustomButton(
                         text: "Register",
                         ontap: () {
-                          validation.handleLogin(
-                            context,
-                            emailController.text,
-                            passwordController.text,
-                            verifyPasswordController.text,
+                          validation.handleRegister(
+                            context: context,
+                            email: emailController.text,
+                            password: passwordController.text,
+                            confirmPassword: verifyPasswordController.text,
+                            firstName: firstNameController.text,
+                            lastName: lastNameController.text,
+                            phone: phoneNumerController.text,
+                            dateOfBirth: dateController.text,
+                            gender: genderController.text,
+                            nationality: nationalityController.text,
+                            experienceYears: yearOfExperienceController.text,
                           );
                         },
                       ),
+
                       SizedBox(height: 18.h),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,

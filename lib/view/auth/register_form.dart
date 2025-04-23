@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:test/core/utils/app_color.dart';
-
 import 'package:test/core/widget/custom_text_field.dart';
 import 'package:test/core/widget/image_picker.dart';
 
@@ -20,6 +19,7 @@ class RegistrationForm extends StatefulWidget {
   final TextEditingController genderController;
   final TextEditingController nationalityController;
 
+
   const RegistrationForm({
     super.key,
     required this.firstNameController,
@@ -31,6 +31,7 @@ class RegistrationForm extends StatefulWidget {
     required this.dateController,
     required this.genderController,
     required this.nationalityController,
+   
   });
 
   @override
@@ -38,24 +39,24 @@ class RegistrationForm extends StatefulWidget {
 }
 
 class _RegistrationFormState extends State<RegistrationForm> {
+  @override
+
   bool obscureText = false;
   bool obsecureTextReapet = false;
   DateTime selectedDate = DateTime.now();
   File? _selectedImage;
 
   void toggleVisibility() {
-    setState(() {
-      obscureText = !obscureText;
-    });
+    setState(() => obscureText = !obscureText);
   }
+    
 
   void toggleVisibilityReapeat() {
-    setState(() {
-      obsecureTextReapet = !obsecureTextReapet;
-    });
+    setState(() => obsecureTextReapet = !obsecureTextReapet);
   }
 
-  Future<void> _pickImage() async {
+
+ Future<void> _pickImage() async {
     final pickedImage = await CustomImagePicker.chooseImageSource(context);
     if (pickedImage != null) {
       setState(() {
@@ -64,25 +65,27 @@ class _RegistrationFormState extends State<RegistrationForm> {
     }
   }
 
+
+  @override
+void initState() {
+  super.initState();
+  // Initialize the dateController with an empty string
+  widget.dateController.text = "";
+}
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         InkWell(
-          onTap: _pickImage, // Call the method to pick an image
+          onTap: _pickImage,
           child: CircleAvatar(
             radius: 45,
             backgroundColor: const Color.fromARGB(255, 191, 194, 196),
-            backgroundImage:
-                _selectedImage != null ? FileImage(_selectedImage!) : null,
-            child:
-                _selectedImage == null
-                    ? Text(
-                      "Choose Your Photo",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: AppColors.black),
-                    )
-                    : null,
+            backgroundImage: _selectedImage != null ? FileImage(_selectedImage!) : null,
+            child: _selectedImage == null
+                ? Text("Choose Your Photo", textAlign: TextAlign.center, style: TextStyle(color: AppColors.black))
+                : null,
           ),
         ),
         SizedBox(height: 20.h),
@@ -95,7 +98,6 @@ class _RegistrationFormState extends State<RegistrationForm> {
           hintText: "Enter your first name",
         ),
         10.verticalSpace,
-
         CustomFormTextField(
           keyboardType: TextInputType.text,
           controller: widget.lastNameController,
@@ -105,7 +107,6 @@ class _RegistrationFormState extends State<RegistrationForm> {
           hintText: "Enter your last name",
         ),
         10.verticalSpace,
-
         CustomFormTextField(
           keyboardType: TextInputType.emailAddress,
           controller: widget.emailController,
@@ -122,16 +123,12 @@ class _RegistrationFormState extends State<RegistrationForm> {
           prefixIcon: Icon(Icons.password_outlined, color: Color(0xFF002E53)),
           suffixIcon: IconButton(
             onPressed: toggleVisibility,
-            icon: Icon(
-              obscureText ? Icons.visibility_off : Icons.visibility,
-              color: Color(0xFF002E53),
-            ),
+            icon: Icon(obscureText ? Icons.visibility_off : Icons.visibility, color: Color(0xFF002E53)),
           ),
           labelText: "Password",
           hintText: "Enter your password",
         ),
         10.verticalSpace,
-
         CustomFormTextField(
           keyboardType: TextInputType.visiblePassword,
           controller: widget.verifyPasswordController,
@@ -139,34 +136,28 @@ class _RegistrationFormState extends State<RegistrationForm> {
           prefixIcon: Icon(Icons.password_outlined, color: Color(0xFF002E53)),
           suffixIcon: IconButton(
             onPressed: toggleVisibilityReapeat,
-            icon: Icon(
-              obsecureTextReapet ? Icons.visibility_off : Icons.visibility,
-              color: Color(0xFF002E53),
-            ),
+            icon: Icon(obsecureTextReapet ? Icons.visibility_off : Icons.visibility, color: Color(0xFF002E53)),
           ),
           labelText: "Verify Password",
           hintText: "Repeat password",
         ),
         10.verticalSpace,
-
         CustomFormTextField(
           controller: widget.dateController,
           keyboardType: TextInputType.none,
           obscureText: false,
           readOnly: true,
           onTap: () async {
-            final DateTime? dateTime = await showDatePicker(
+            final dateTime = await showDatePicker(
               context: context,
               initialDate: selectedDate,
               firstDate: DateTime(2000),
               lastDate: DateTime(2050),
             );
-
             if (dateTime != null) {
               setState(() {
                 selectedDate = dateTime;
-                widget.dateController.text =
-                    "${selectedDate.day}-${selectedDate.month}-${selectedDate.year}";
+                widget.dateController.text = "${selectedDate.day}-${selectedDate.month}-${selectedDate.year}";
               });
             }
           },
@@ -174,7 +165,6 @@ class _RegistrationFormState extends State<RegistrationForm> {
           hintText: "Choose your birth date",
         ),
         10.verticalSpace,
-
         CustomFormTextField(
           keyboardType: TextInputType.none,
           controller: widget.genderController,
@@ -183,21 +173,12 @@ class _RegistrationFormState extends State<RegistrationForm> {
           onTap: () {},
           prefixIcon: Icon(Icons.person, color: Color(0xFF002E53)),
           suffixIcon: PopupMenuButton<String>(
-            icon: Icon(
-              Icons.arrow_drop_down_rounded,
-              size: 50,
-              color: Color(0xFF002E53),
-            ),
-            onSelected: (String value) {
-              setState(() {
-                widget.genderController.text = value;
-              });
-            },
-            itemBuilder:
-                (BuildContext context) => [
-                  PopupMenuItem(value: 'Male', child: Text('Male')),
-                  PopupMenuItem(value: 'Female', child: Text('Female')),
-                ],
+            icon: Icon(Icons.arrow_drop_down_rounded, size: 50, color: Color(0xFF002E53)),
+            onSelected: (value) => setState(() => widget.genderController.text = value),
+            itemBuilder: (context) => [
+              PopupMenuItem(value: 'Male', child: Text('Male')),
+              PopupMenuItem(value: 'Female', child: Text('Female')),
+            ],
           ),
           labelText: "Gender",
           hintText: "Select gender",
@@ -215,27 +196,21 @@ class _RegistrationFormState extends State<RegistrationForm> {
             showCountryPicker(
               context: context,
               showPhoneCode: false,
-              onSelect: (Country country) {
-                widget.nationalityController.text = country.name;
-              },
+              onSelect: (country) => widget.nationalityController.text = country.name,
               countryListTheme: CountryListThemeData(
                 backgroundColor: Colors.grey[200]!,
                 bottomSheetHeight: 500,
-                borderRadius: const BorderRadius.only(
+                borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20),
                   topRight: Radius.circular(20),
                 ),
               ),
             );
           },
-          suffixIcon: Icon(
-            Icons.arrow_drop_down_rounded,
-            size: 50,
-            color: Color(0xFF002E53),
-          ),
+          suffixIcon: Icon(Icons.arrow_drop_down_rounded, size: 50, color: Color(0xFF002E53)),
         ),
         15.verticalSpace,
-        Padding(
+           Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: IntlPhoneField(
             controller: widget.phoneNumberController,
@@ -266,12 +241,13 @@ class _RegistrationFormState extends State<RegistrationForm> {
               ),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(50),
+                  borderSide: BorderSide(color: Colors.black, width: 1.3),
               ),
             ),
             autovalidateMode: AutovalidateMode.onUserInteraction,
-            onChanged: (phone) {
-              widget.phoneNumberController.text = phone.completeNumber;
-            },
+            // onChanged: (phone) {
+            //   widget.phoneNumberController.text = phone.completeNumber;
+            // },
             validator: (value) {
               if (value == null || value.number.isEmpty) {
                 return 'Phone number is required';

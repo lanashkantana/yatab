@@ -20,7 +20,8 @@ class _LoginPageForGuideBodyState extends State<LoginPageForGuideBody> {
   late bool obscureText = false;
   late bool obsecureTextReapet = false;
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _verifyPasswordController = TextEditingController();
+  final TextEditingController _verifyPasswordController =
+      TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final Validation _validation = Validation();
 
@@ -47,19 +48,15 @@ class _LoginPageForGuideBodyState extends State<LoginPageForGuideBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-body: Container(
+      body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
-            colors: [
-              Colors.blue[900]!,
-              Colors.blue[800]!,
-              Colors.blue[400]!,
-            ],
+            colors: [Colors.blue[900]!, Colors.blue[800]!, Colors.blue[400]!],
           ),
         ),
-        child: SingleChildScrollView( // Ensure scrolling is enabled
+        child: SingleChildScrollView(
+          // Ensure scrolling is enabled
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -69,9 +66,15 @@ body: Container(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text("Login", style: TextStyle(fontSize: 40.sp,color: AppColors.white)),
+                    Text(
+                      "Login",
+                      style: TextStyle(fontSize: 40.sp, color: AppColors.white),
+                    ),
                     SizedBox(height: 5.h),
-                    Text("Welcome Again", style: TextStyle(fontSize: 20.sp,color: AppColors.white)),
+                    Text(
+                      "Welcome Again",
+                      style: TextStyle(fontSize: 20.sp, color: AppColors.white),
+                    ),
                     SizedBox(height: 5.h),
                   ],
                 ),
@@ -102,13 +105,10 @@ body: Container(
                           ),
                         ),
                         labelText: "Email",
-                       
+
                         hintText: "Enter your email",
-                       
                       ),
                       SizedBox(height: 40.h),
-
-
 
                       CustomFormTextField(
                         keyboardType: TextInputType.visiblePassword,
@@ -123,20 +123,18 @@ body: Container(
                         suffixIcon: IconButton(
                           onPressed: _toggleVisibility,
                           icon: Icon(
-                            obscureText ? Icons.visibility_off : Icons.visibility,
+                            obscureText
+                                ? Icons.visibility_off
+                                : Icons.visibility,
                             color: const Color.fromARGB(255, 0, 46, 83),
                           ),
                         ),
                         labelText: "Password",
                         hintText: "Enter your password",
-                       
-                       
+
                         obscureText: obscureText,
-                     
                       ),
                       SizedBox(height: 40.h),
-
-
 
                       CustomFormTextField(
                         keyboardType: TextInputType.visiblePassword,
@@ -151,26 +149,18 @@ body: Container(
                         suffixIcon: IconButton(
                           onPressed: _toggleVisibilityReapeat,
                           icon: Icon(
-                            obsecureTextReapet ? Icons.visibility_off : Icons.visibility,
+                            obsecureTextReapet
+                                ? Icons.visibility_off
+                                : Icons.visibility,
                             color: const Color.fromARGB(255, 0, 46, 83),
                           ),
                         ),
                         labelText: "Verify Password",
                         hintText: "Repeat password",
-                       
-                        
+
                         obscureText: obsecureTextReapet,
-                        
                       ),
                       SizedBox(height: 40.h),
-
-
-
-
-
-
-
-
 
                       CustomButton(
                         text: "Login",
@@ -188,13 +178,25 @@ body: Container(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text("Don't Have an Account?", style: TextStyle(fontSize: 16)),
+                          Text(
+                            "Don't Have an Account?",
+                            style: TextStyle(fontSize: 16),
+                          ),
                           SizedBox(width: 5.w),
                           InkWell(
                             onTap: () {
-                              GoRouter.of(context).push(AppRouter.kRegisterPageForGuide);
+                              GoRouter.of(
+                                context,
+                              ).push(AppRouter.kRegisterPageForGuide);
                             },
-                            child: Text("Register", style: TextStyle(color: AppColors.lightBlue,fontSize: 16,fontWeight: FontWeight.bold)),
+                            child: Text(
+                              "Register",
+                              style: TextStyle(
+                                color: AppColors.lightBlue,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
                         ],
                       ),
@@ -205,9 +207,7 @@ body: Container(
             ],
           ),
         ),
-
-    ),
-
+      ),
     );
   }
 }

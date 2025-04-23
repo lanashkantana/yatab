@@ -6,6 +6,7 @@ import 'package:test/view/auth/auth_tourist/register_page_by_tourist_body.dart';
 import 'package:test/view/auth/auth_tourist/selection_page.dart';
 import 'package:test/view/bottom-navigation_bar/bottom_nav_bar.dart';
 import 'package:test/view/onBoarding_page/onBoardingPage.dart';
+import 'package:test/view/splash_page/splash_page.dart';
 
 class AppRouter {
   static const kLoginPageForTourist = '/kLoginPageForTourist';
@@ -22,7 +23,7 @@ class AppRouter {
 
   static final router = GoRouter(
     routes: [
-      GoRoute(path: '/', builder: (context, state) => const BottomNavBar()),
+      GoRoute(path: '/', builder: (context, state) => const SplachView()),
       GoRoute(
         path: kOnBoardingScreen,
         builder: (context, state) => const Onboarding(),
