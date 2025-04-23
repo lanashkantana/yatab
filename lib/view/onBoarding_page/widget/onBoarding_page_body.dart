@@ -59,6 +59,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   style: TextStyle(
                     fontSize: 30.sp,
                     fontWeight: FontWeight.bold,
+
                     color: Colors.black,
                   ),
                   children: [
@@ -112,7 +113,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     curve: Curves.easeInOut,
                   );
                 } else {
-                  GoRouter.of(context).pushReplacement(AppRouter.kSelectionPage);
+                  GoRouter.of(
+                    context,
+                  ).pushReplacement(AppRouter.kSelectionPage);
                 }
               },
             ),

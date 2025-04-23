@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:icons_flutter/icons_flutter.dart';
 import 'package:test/core/utils/app_color.dart';
 import 'package:test/view/HomePage/booking_page/Booking_page.dart';
-import 'package:test/view/HomePage/favourite__page/favourite_page.dart';
 import 'package:test/view/HomePage/home_page/home_page.dart';
 import 'package:test/view/HomePage/hotel_page/hotel_page.dart';
 import 'package:test/view/HomePage/person_page/person_page.dart';
@@ -23,7 +22,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     Icon(FontAwesome5Icon.home, size: 24.sp),
   Icon(FontAwesome5Icon.plane, size: 24.sp),
     Icon(FontAwesome5Icon.search, size: 24.sp),
-    Icon(FontAwesome5Icon.heart, size: 30.sp, color: Colors.red),
+  
     Icon(FontAwesome5Icon.hotel, size: 24.sp),
     Icon(Ionicons.md_person, size: 24.sp),
   ];
@@ -31,7 +30,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     HomePage(),
     BookingPage(),
     SearchPage(),
-    FavouritePage(),
+  
     HotelPage(),
     PersonPage(),
   ];
@@ -58,7 +57,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                 index = selectedIndex;
               });
             },
-            color: AppColors.BeigeLight,
+            color: Color(0xff333333),
           ),
         ),
         body: screens[index],
