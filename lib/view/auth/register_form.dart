@@ -4,6 +4,7 @@ import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test/core/utils/app_color.dart';
 import 'package:test/core/widget/custom_text_field.dart';
 import 'package:test/core/widget/image_picker.dart';
@@ -40,6 +41,35 @@ class RegistrationForm extends StatefulWidget {
 
 class _RegistrationFormState extends State<RegistrationForm> {
   @override
+  Future<void> _loadData() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      widget.emailController.text = prefs.getString('email') ?? '';
+      widget.firstNameController.text = prefs.getString('firstName') ?? '';
+      widget.lastNameController.text = prefs.getString('lastName') ?? '';
+      widget.phoneNumberController.text = prefs.getString('phone') ?? '';
+      widget.dateController.text = prefs.getString('dateOfBirth') ?? '';
+      widget.genderController.text = prefs.getString('gender') ?? '';
+      widget.nationalityController.text = prefs.getString('nationality') ?? '';
+   
+    });
+  }
+  Future<void> _saveData() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('email', widget.emailController.text);
+    await prefs.setString('firstName', widget.firstNameController.text);
+    await prefs.setString('lastName', widget.lastNameController.text);
+    await prefs.setString('phone', widget.phoneNumberController.text);
+    await prefs.setString('dateOfBirth', widget.dateController.text);
+    await prefs.setString('gender', widget.genderController.text);
+    await prefs.setString('nationality', widget.nationalityController.text);
+  
+
+    // Show confirmation
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Data saved successfully!')),
+    );
+  }
 
   bool obscureText = false;
   bool obsecureTextReapet = false;

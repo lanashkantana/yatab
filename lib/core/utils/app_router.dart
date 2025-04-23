@@ -1,11 +1,12 @@
 import 'package:go_router/go_router.dart';
+import 'package:test/view/HomePage/person_page/edit_profile.dart';
 import 'package:test/view/auth/auth_guide/login_page_by_guide_body.dart';
 import 'package:test/view/auth/auth_guide/register_page_by_guide_body.dart';
 import 'package:test/view/auth/auth_tourist/login_page_by_tourist_body.dart';
 import 'package:test/view/auth/auth_tourist/register_page_by_tourist_body.dart';
 import 'package:test/view/auth/auth_tourist/selection_page.dart';
 import 'package:test/view/bottom-navigation_bar/bottom_nav_bar.dart';
-import 'package:test/view/onBoarding_page/onBoardingPage.dart';
+import 'package:test/view/onBoarding_page/on_boarding_page.dart';
 import 'package:test/view/splash_page/splash_page.dart';
 
 class AppRouter {
@@ -20,6 +21,9 @@ class AppRouter {
   ///
   static const kRegisterPageForGuide = '/RegisterPageForGuide';
   static const kLoginPageForGuide = '/kLoginPageForGuide';
+static const kEditProfile = '/kEditProfile';
+
+  
 
   static final router = GoRouter(
     routes: [
@@ -51,8 +55,8 @@ class AppRouter {
         builder: (context, state) => const RegisterPageForGuideBody(),
       ),
       GoRoute(
-        path: kLoginPageForGuide,
-        builder: (context, state) => const LoginPageForGuideBody(),
+        path: kEditProfile,
+        builder: (context, state) => const EditProfile(),
       ),
     ],
   );

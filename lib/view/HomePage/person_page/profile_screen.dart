@@ -1,20 +1,23 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:icons_flutter/icons_flutter.dart';
-import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-import 'package:test/core/utils/app_color.dart';
 import 'package:test/core/utils/app_image.dart';
 import 'package:test/core/utils/app_router.dart';
+import 'package:test/core/utils/theme_manager.dart';
+import 'package:test/core/widget/custom_aweasome_dialog.dart';
+import 'package:test/view/HomePage/person_page/profile_list_item.dart'; // Import the theme notifier
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    CustomAwesomeDialog customAweasomeDialog = CustomAwesomeDialog();
     List<String> text = [
       "Edit Profile",
-      "Change Password",
+
       "Change Language",
       "Contact Us",
       "Invite a Friend",
@@ -23,11 +26,49 @@ class ProfileScreen extends StatelessWidget {
 
     List<IconData> icon = [
       FontAwesome5Icon.user,
-      FontAwesome5Icon.lock,
+
       FontAwesome5Icon.language,
       FontAwesome5Icon.question_circle,
       FontAwesome5Icon.user_plus,
       FontAwesome5Icon.sign_out_alt,
+    ];
+    List<VoidCallback> actions = [
+      () {
+        // Handle edit profile
+        GoRouter.of(context).push(AppRouter.kEditProfile);
+        // Navigate to edit profile screen or show a dialog
+      },
+
+      () {
+        // Handle change language
+        print("Change Language tapped");
+        // Show language options
+      },
+      () {
+        // Handle contact us
+        print("Contact Us tapped");
+        // Navigate to contact us screen or show a dialog
+      },
+      () {
+        // Handle invite a friend
+        print("Invite a Friend tapped");
+        // Show share options
+      },
+      () {
+        // Handle logout
+
+        customAweasomeDialog.displayDialog(
+          context: context,
+          dialogType: DialogType.question,
+          title: "Are You Sure you want to logout",
+          btnOkOnPress: () {
+            GoRouter.of(context).push(AppRouter.kLoginPageForTourist);
+          },
+          btnCancelOnPress: () {},
+        );
+
+        // Perform logout action
+      },
     ];
 
     List<bool> hasNavigation = [true, true, true, true, true, false];
@@ -45,17 +86,22 @@ class ProfileScreen extends StatelessWidget {
               Positioned(
                 bottom: 0,
                 right: 0,
-                child: Container(
-                  height: 27.h,
-                  width: 27.w,
-                  decoration: BoxDecoration(
-                    color: Colors.yellow,
-                    shape: BoxShape.circle,
-                  ),
-                  child: IconButton(
-                    icon: Icon(FontAwesome5Icon.pen, size: 18.sp),
-                    onPressed: () {},
-                    color: Color(0xff333333),
+                child: InkWell(
+                  onTap: (){
+                        GoRouter.of(context).push(AppRouter.kEditProfile);
+                  },
+                  child: Container(
+                    height: 30.h,
+                    width: 27.w,
+                    decoration: BoxDecoration(
+                      color: Colors.yellow,
+                      shape: BoxShape.circle,
+                    ),
+                    child: IconButton(
+                      icon: Icon(FontAwesome5Icon.pen, size: 18.sp),
+                      onPressed: () {},
+                      color: const Color(0xff333333),
+                    ),
                   ),
                 ),
               ),
@@ -70,10 +116,9 @@ class ProfileScreen extends StatelessWidget {
         SizedBox(height: 5.h),
         Text(
           "lanaqitt@gmail.com",
-          style: TextStyle(
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
             fontWeight: FontWeight.bold,
             fontSize: 18.sp,
-            color: Colors.black54,
           ),
         ),
       ],
@@ -84,19 +129,25 @@ class ProfileScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(width: 20.w),
+
+        /// 🌞 Light mode
         IconButton(
-          icon: Icon(FontAwesome5Icon.arrow_left, size: 30.sp),
+          icon: Icon(FontAwesome5Icon.sun, size: 30.sp),
           onPressed: () {
-            GoRouter.of(context).push(AppRouter.kBottomNavBar);
+            themeNotifier.value = ThemeMode.light;
           },
-          color: const Color(0xff333333),
+          color: Theme.of(context).iconTheme.color,
         ),
 
         profileInfo,
+
+        /// 🌙 Dark mode
         IconButton(
           icon: Icon(FontAwesome5Icon.moon, size: 30.sp),
-          onPressed: () {},
-          color: const Color(0xff333333),
+          onPressed: () {
+            themeNotifier.value = ThemeMode.dark;
+          },
+          color: Theme.of(context).iconTheme.color,
         ),
         SizedBox(width: 20.w),
       ],
@@ -111,15 +162,14 @@ class ProfileScreen extends StatelessWidget {
             header,
             ListView.builder(
               itemCount: text.length,
-              shrinkWrap:
-                  true, // To prevent ListView from taking infinite height
-              physics:
-                  NeverScrollableScrollPhysics(), // Disable scrolling for ListView
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (BuildContext context, int index) {
                 return ProfileListItem(
                   hasNavigation: hasNavigation[index],
                   icon: icon[index],
                   text: text[index],
+                  onTap: actions[index],
                 );
               },
             ),
@@ -130,54 +180,4 @@ class ProfileScreen extends StatelessWidget {
   }
 }
 
-class ProfileListItem extends StatelessWidget {
-  final IconData? icon;
-  final String? text;
-  final bool hasNavigation;
 
-  const ProfileListItem({
-    super.key,
-    required this.hasNavigation,
-    this.icon,
-    this.text,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-      child: InkWell(
-        hoverColor: AppColors.orange,
-        focusColor: AppColors.orange,
-        onTap: () {},
-        child: Container(
-          height: 55.h,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(50),
-            color: Color.fromARGB(255, 111, 111, 105),
-          ),
-          child: Row(
-            children: [
-              IconButton(icon: Icon(icon, size: 20.sp), onPressed: () {}),
-              SizedBox(width: 15.w),
-              Text(
-                text ?? '',
-                style: TextStyle(
-                  color: AppColors.white,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 18.sp,
-                ),
-              ),
-              Spacer(),
-              if (hasNavigation)
-                IconButton(
-                  icon: Icon(LineAwesomeIcons.angle_right_solid, size: 22.sp),
-                  onPressed: () {},
-                ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}

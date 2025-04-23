@@ -9,7 +9,7 @@ class AppColors {
 static const white = Color(0xffFFFFFF);
 static const orange = Color.fromARGB(255, 255, 0, 0);
 
- static const   BeigeLight  =const Color.fromARGB(232, 203, 195, 195);
+ static const   beigeLight  =Color.fromARGB(232, 203, 195, 195);
 
 
 

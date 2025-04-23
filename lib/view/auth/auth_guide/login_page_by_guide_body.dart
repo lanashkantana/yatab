@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:test/core/utils/app_color.dart';
 import 'package:test/core/utils/app_image.dart';
 import 'package:test/core/utils/app_router.dart';
-
 import 'package:test/core/widget/custom_button.dart';
 import 'package:test/core/widget/custom_text_field.dart';
 import 'package:test/core/widget/validation.dart';
@@ -48,6 +47,7 @@ class _LoginPageForGuideBodyState extends State<LoginPageForGuideBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -180,7 +180,8 @@ class _LoginPageForGuideBodyState extends State<LoginPageForGuideBody> {
                         children: [
                           Text(
                             "Don't Have an Account?",
-                            style: TextStyle(fontSize: 16),
+                            style: TextStyle(fontSize: 16,color:Colors.black,
+                            fontWeight: FontWeight.bold),
                           ),
                           SizedBox(width: 5.w),
                           InkWell(

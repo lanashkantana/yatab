@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test/view/onBoarding_page/widget/onBoarding_page_body.dart';
+import 'package:test/view/onBoarding_page/widget/on_boarding_page_body.dart';
 
 
 

@@ -1,6 +1,4 @@
-import 'dart:io';
 
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -74,8 +72,10 @@ class _RegisterPageForGuideBodyState extends State<RegisterPageForGuideBody> {
 
   @override
   Widget build(BuildContext context) {
-    File? selectedImage;
+    // File? selectedImage;
     return Scaffold(
+      // extendBodyBehindAppBar: true,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       extendBody: true,
       body: Container(
         decoration: BoxDecoration(
@@ -156,25 +156,8 @@ class _RegisterPageForGuideBodyState extends State<RegisterPageForGuideBody> {
                       CustomButton(
                         text: "Register",
                         ontap: () {
-                          if (selectedImage == null) {
-                            AwesomeDialog(
-                              context: context,
-                              dialogType: DialogType.error,
-                              animType: AnimType.rightSlide,
-                              title: 'Validation Error',
-                              desc: "please Enter the Photo",
-                              btnOkOnPress: () {},
-                              btnCancelOnPress: () {},
-                              btnOkColor: Colors.blue,
-                              transitionAnimationDuration: Duration(
-                                milliseconds: 500,
-                              ),
-                              dialogBorderRadius: BorderRadius.circular(40),
-                              dialogBackgroundColor: Colors.white,
-                            ).show();
-                            return;
-                          }
-
+                        
+                        
                           validation.handleRegister(
                             context: context,
                             email: emailController.text,
@@ -199,7 +182,10 @@ class _RegisterPageForGuideBodyState extends State<RegisterPageForGuideBody> {
                         children: [
                           Text(
                             "Don't have an account?",
-                            style: TextStyle(fontSize: 16),
+                                   style: TextStyle(fontSize: 16,
+                                   
+                                   
+                                   color:Colors.black,fontWeight: FontWeight.bold),
                           ),
                           SizedBox(width: 5.w),
                           InkWell(
@@ -219,6 +205,7 @@ class _RegisterPageForGuideBodyState extends State<RegisterPageForGuideBody> {
                           ),
                         ],
                       ),
+                      20.verticalSpace,
                     ],
                   ),
                 ),
@@ -226,7 +213,9 @@ class _RegisterPageForGuideBodyState extends State<RegisterPageForGuideBody> {
             ],
           ),
         ),
+        
       ),
+      
     );
   }
 }

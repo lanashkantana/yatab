@@ -1,4 +1,4 @@
-import 'dart:io';
+
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -72,8 +72,9 @@ class _RegisterPageByTouristBodyState extends State<RegisterPageByTouristBody> {
 
   @override
   Widget build(BuildContext context) {
-    File? selectedImage;
+    // File? selectedImage;
     return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       extendBody: true,
       body: Container(
         decoration: BoxDecoration(
@@ -147,6 +148,7 @@ class _RegisterPageByTouristBodyState extends State<RegisterPageByTouristBody> {
                             nationality: nationalityController.text,
                             experienceYears: yearOfExperienceController.text,
                           );
+                          
                         },
                       ),
 
@@ -156,7 +158,7 @@ class _RegisterPageByTouristBodyState extends State<RegisterPageByTouristBody> {
                         children: [
                           Text(
                             "Don't have an account?",
-                            style: TextStyle(fontSize: 16),
+                            style: TextStyle(fontSize: 16, color: Theme.of(context).textTheme.bodyMedium?.color,),
                           ),
                           SizedBox(width: 5.w),
                           InkWell(

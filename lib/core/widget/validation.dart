@@ -170,7 +170,7 @@ class Validation {
     // ✅ Registration successful
     GoRouter.of(context).pushReplacement(AppRouter.kBottomNavBar);
   }
-void showPhotoValidationDialog(BuildContext context) {
+void showPhotoValidationDialog(BuildContext context,) {
   AwesomeDialog(
     context: context,
     dialogType: DialogType.error,
