@@ -76,8 +76,10 @@ class _CustomFormTextFieldState extends State<CustomFormTextField> {
           enabledBorder: _outlineInputBorder(),
           border: _outlineInputBorder(),
           focusedBorder: _outlineInputBorder(),
+           errorBorder: errorBorder(),
         ),
       ),
+      
     );
   }
 
@@ -85,6 +87,12 @@ class _CustomFormTextFieldState extends State<CustomFormTextField> {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(50),
       borderSide: BorderSide(color: Colors.black, width: 1.3.w),
+    );
+  }
+   OutlineInputBorder errorBorder() {
+    return OutlineInputBorder(
+      borderRadius: BorderRadius.circular(50),
+      borderSide: BorderSide(color: Colors.red, width: 1.3.w),
     );
   }
 }

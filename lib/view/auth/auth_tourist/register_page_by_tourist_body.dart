@@ -1,4 +1,4 @@
-
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,7 +9,6 @@ import 'package:test/core/widget/custom_button.dart';
 import 'package:test/core/widget/validation.dart';
 import 'package:test/view/auth/register_form.dart';
 
-///
 class RegisterPageByTouristBody extends StatefulWidget {
   const RegisterPageByTouristBody({super.key});
 
@@ -37,13 +36,15 @@ class _RegisterPageByTouristBodyState extends State<RegisterPageByTouristBody> {
 
   final Validation validation = Validation();
 
+  final GlobalKey<RegistrationFormState> formKey =
+      GlobalKey<RegistrationFormState>();
+
   DateTime selectedDate = DateTime.now();
 
   @override
   void initState() {
     super.initState();
-    dateController.text =
-        "${selectedDate.day}-${selectedDate.month}-${selectedDate.year}";
+    dateController.text = "";
   }
 
   @override
@@ -72,7 +73,6 @@ class _RegisterPageByTouristBodyState extends State<RegisterPageByTouristBody> {
 
   @override
   Widget build(BuildContext context) {
-    // File? selectedImage;
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       extendBody: true,
@@ -119,8 +119,8 @@ class _RegisterPageByTouristBodyState extends State<RegisterPageByTouristBody> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      // داخل build:
                       RegistrationForm(
+                        key: formKey, // ✅ Attach GlobalKey
                         firstNameController: firstNameController,
                         lastNameController: lastNameController,
                         emailController: emailController,
@@ -135,6 +135,8 @@ class _RegisterPageByTouristBodyState extends State<RegisterPageByTouristBody> {
                       CustomButton(
                         text: "Register",
                         ontap: () {
+                          final formState = formKey.currentState;
+                          File? selectedImage = formState?.selectedImage;
                           validation.handleRegister(
                             context: context,
                             email: emailController.text,
@@ -147,18 +149,21 @@ class _RegisterPageByTouristBodyState extends State<RegisterPageByTouristBody> {
                             gender: genderController.text,
                             nationality: nationalityController.text,
                             experienceYears: yearOfExperienceController.text,
+                            image: selectedImage, // ✅ Pass image to validator
                           );
-                          
                         },
                       ),
-
                       SizedBox(height: 18.h),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
                             "Don't have an account?",
-                            style: TextStyle(fontSize: 16, color: Theme.of(context).textTheme.bodyMedium?.color,),
+                            style: TextStyle(
+                              fontSize: 16,
+                              color:
+                                  Theme.of(context).textTheme.bodyMedium?.color,
+                            ),
                           ),
                           SizedBox(width: 5.w),
                           InkWell(

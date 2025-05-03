@@ -6,40 +6,84 @@ import 'package:go_router/go_router.dart';
 import 'package:test/core/utils/app_router.dart';
 
 class Validation {
+  // Email
   String? validateEmail(String email) {
-    final RegExp emailRegex = RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
-    if (email.isEmpty) {
-      return 'Email is required';
-    } else if (!emailRegex.hasMatch(email)) {
-      return 'Invalid email format';
-    }
+    final RegExp emailRegex = RegExp(
+      r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
+    );
+    if (email.isEmpty) return 'Email is required';
+    if (!emailRegex.hasMatch(email)) return 'Invalid email format';
     return null;
   }
 
+  // Password
   String? validatePassword(String password) {
-    if (password.isEmpty) {
-      return 'Password is required';
-    } else if (password.length < 6) {
-      return 'Password must be at least 6 characters';
-    }
+    if (password.isEmpty) return 'Password is required';
+    if (password.length < 6) return 'Password must be at least 6 characters';
     return null;
   }
 
   String? validateVerifyPassword(String password, String verifyPassword) {
-    if (verifyPassword.isEmpty) {
-      return 'Please verify your password';
-    } else if (password != verifyPassword) {
-      return 'Passwords do not match';
-    }
+    if (verifyPassword.isEmpty) return 'Please verify your password';
+    if (password != verifyPassword) return 'Passwords do not match';
     return null;
   }
 
-  void handleLogin(BuildContext context, String email, String password, String verifyPassword) {
+  // Names
+  String? validateFirstName(String firstName) {
+    if (firstName.isEmpty) return 'First name is required';
+    return null;
+  }
+
+  String? validateLastName(String lastName) {
+    if (lastName.isEmpty) return 'Last name is required';
+    return null;
+  }
+
+  // Phone
+  String? validatePhoneNumber(String phoneNumber) {
+    if (phoneNumber.isEmpty) return 'Phone number is required';
+    return null;
+  }
+
+  // Other fields
+  String? validateNationality(String nationality) {
+    if (nationality.isEmpty) return 'Nationality is required';
+    return null;
+  }
+
+  String? validateGender(String gender) {
+    if (gender.isEmpty) return 'Gender is required';
+    return null;
+  }
+
+  String? validateBirthDate(String birthDate) {
+    if (birthDate.isEmpty) return 'Birthdate is required';
+    return null;
+  }
+
+  String? validateImage(File? imageFile) {
+    if (imageFile == null) return 'Profile image is required';
+    return null;
+  }
+
+  // Handle Login
+  void handleLogin(
+    BuildContext context,
+    String email,
+    String password,
+    String verifyPassword,
+  ) {
     final emailError = validateEmail(email);
     final passwordError = validatePassword(password);
-    final verifyPasswordError = validateVerifyPassword(password, verifyPassword);
+    final verifyPasswordError = validateVerifyPassword(
+      password,
+      verifyPassword,
+    );
 
-    if (emailError != null || passwordError != null || verifyPasswordError != null) {
+    if (emailError != null ||
+        passwordError != null ||
+        verifyPasswordError != null) {
       AwesomeDialog(
         context: context,
         dialogType: DialogType.error,
@@ -53,62 +97,13 @@ class Validation {
         dialogBorderRadius: BorderRadius.circular(40),
         dialogBackgroundColor: Colors.white,
       ).show();
-
       return;
     }
 
     GoRouter.of(context).pushReplacement(AppRouter.kBottomNavBar);
   }
 
-  String? validateFirstName(String firstName) {
-    if (firstName.isEmpty) {
-      return 'First name is required';
-    }
-    return null;
-  }
-
-  String? validateLastName(String lastName) {
-    if (lastName.isEmpty) {
-      return 'Last name is required';
-    }
-    return null;
-  }
-
-  String? validatePhoneNumber(String phoneNumber) {
-    if (phoneNumber.isEmpty) {
-      return 'Phone number is required';
-    }
-    return null;
-  }
-
-  String? validateNationality(String nationality) {
-    if (nationality.isEmpty) {
-      return 'Nationality is required';
-    }
-    return null;
-  }
-
-  String? validateGender(String gender) {
-    if (gender.isEmpty) {
-      return 'Gender is required';
-    }
-    return null;
-  }
-
-  String? validateBirthDate(String birthDate) {
-    if (birthDate.isEmpty) {
-      return 'Birthdate is required';
-    }
-    return null;
-  }
-
-  String? validateImage(File? imageFile) {
-    if (imageFile == null) {
-      return 'Profile image is required';
-    }
-    return null;
-  }
-
+  // Handle Register
   void handleRegister({
     required BuildContext context,
     required String firstName,
@@ -121,18 +116,21 @@ class Validation {
     required String gender,
     required String nationality,
     required String experienceYears,
-   
+    required File? image,
   }) {
     final firstNameError = validateFirstName(firstName);
     final lastNameError = validateLastName(lastName);
     final emailError = validateEmail(email);
     final passwordError = validatePassword(password);
-    final confirmPasswordError = validateVerifyPassword(password, confirmPassword);
+    final confirmPasswordError = validateVerifyPassword(
+      password,
+      confirmPassword,
+    );
     final phoneError = validatePhoneNumber(phone);
     final genderError = validateGender(gender);
     final nationalityError = validateNationality(nationality);
     final dobError = validateBirthDate(dateOfBirth);
-
+    final imageError = validateImage(image);
 
     if (firstNameError != null ||
         lastNameError != null ||
@@ -142,13 +140,15 @@ class Validation {
         phoneError != null ||
         genderError != null ||
         nationalityError != null ||
-        dobError != null ) {
+        dobError != null ||
+        imageError != null) {
       AwesomeDialog(
         context: context,
         dialogType: DialogType.error,
         animType: AnimType.rightSlide,
         title: 'Validation Error',
-        desc: firstNameError ??
+        desc:
+            firstNameError ??
             lastNameError ??
             emailError ??
             passwordError ??
@@ -156,7 +156,8 @@ class Validation {
             phoneError ??
             genderError ??
             nationalityError ??
-            dobError,
+            dobError ??
+            imageError,
         btnOkOnPress: () {},
         btnCancelOnPress: () {},
         btnOkColor: Colors.blue,
@@ -170,21 +171,21 @@ class Validation {
     // ✅ Registration successful
     GoRouter.of(context).pushReplacement(AppRouter.kBottomNavBar);
   }
-void showPhotoValidationDialog(BuildContext context,) {
-  AwesomeDialog(
-    context: context,
-    dialogType: DialogType.error,
-    animType: AnimType.rightSlide,
-    title: 'Validation Error',
-    desc: "Please enter a photo.",
-    btnOkOnPress: () {},
-    btnCancelOnPress: () {},
-    btnOkColor: Colors.blue,
-    transitionAnimationDuration: Duration(milliseconds: 500),
-    dialogBorderRadius: BorderRadius.circular(40),
-    dialogBackgroundColor: Colors.white,
-  ).show();
 
- }
+  // Optional: separate photo-only error dialog
+  void showPhotoValidationDialog(BuildContext context) {
+    AwesomeDialog(
+      context: context,
+      dialogType: DialogType.error,
+      animType: AnimType.rightSlide,
+      title: 'Validation Error',
+      desc: "Please enter a photo.",
+      btnOkOnPress: () {},
+      btnCancelOnPress: () {},
+      btnOkColor: Colors.blue,
+      transitionAnimationDuration: Duration(milliseconds: 500),
+      dialogBorderRadius: BorderRadius.circular(40),
+      dialogBackgroundColor: Colors.white,
+    ).show();
+  }
 }
-

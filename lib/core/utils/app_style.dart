@@ -1,21 +1,36 @@
+// import 'package:flutter/material.dart';
 
-import 'package:flutter/material.dart';
-import 'package:test/constants.dart';
+// import 'package:test/core/utils/app_theme.dart';
 
-abstract class Styles {
-  static const textstyle18 =
-      TextStyle(fontSize: 18, fontWeight: FontWeight.w600);
-  static const textstyle20 = TextStyle(
-    fontSize: 20,
-    fontWeight: FontWeight.normal,
-  );
-  static const textstyle30 = TextStyle(
-      fontSize: 30,
-      fontFamily: Constants.kGtSectraFine,
-      fontWeight: FontWeight.normal);
-  static const textstyle14 =
-      TextStyle(fontSize: 14, fontWeight: FontWeight.normal);
-  static const textstyle16 =
-      TextStyle(fontSize: 16, fontWeight: FontWeight.w500);
-}
-// اضع ال font weaight بناءا على ال حجم التكرر اكثر 
+// class TextStyles {
+//   final BuildContext context;
+
+//   TextStyles(this.context);
+
+//   TextStyle getTitleStyle() {
+//     return Theme.of(context).textTheme.titleLarge!.copyWith(
+//           fontSize: 24,
+//           color: AppTheme.primaryTextColor,
+//         );
+//   }
+
+//   TextStyle getDescriptionStyle() {
+//     return Theme.of(context).textTheme.bodyLarge!.copyWith(
+//           color: AppTheme.secondaryTextColor,
+//         );
+//   }
+
+//   TextStyle getRegularStyle() {
+//     return Theme.of(context).textTheme.bodyLarge!.copyWith(
+//           fontSize: 16,
+//           color: AppTheme.primaryTextColor,
+//         );
+//   }
+
+//   TextStyle getBoldStyle() {
+//     return Theme.of(context).textTheme.titleMedium!.copyWith(
+//           fontSize: 14,
+//           color: AppTheme.primaryTextColor,
+//         );
+//   }
+// }

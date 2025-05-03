@@ -1,6 +1,11 @@
 import 'package:go_router/go_router.dart';
+import 'package:test/view/HomePage/booking_page/booking_page.dart';
+import 'package:test/view/HomePage/hotel_page/home_details/home_details.dart';
+import 'package:test/view/HomePage/hotel_page/home_details/payment.dart';
+import 'package:test/view/HomePage/hotel_page/hotel_list_model.dart';
+import 'package:test/view/HomePage/hotel_page/hotel_page.dart';
 import 'package:test/view/HomePage/person_page/edit_profile.dart';
-import 'package:test/view/auth/auth_guide/login_page_by_guide_body.dart';
+
 import 'package:test/view/auth/auth_guide/register_page_by_guide_body.dart';
 import 'package:test/view/auth/auth_tourist/login_page_by_tourist_body.dart';
 import 'package:test/view/auth/auth_tourist/register_page_by_tourist_body.dart';
@@ -21,8 +26,11 @@ class AppRouter {
   ///
   static const kRegisterPageForGuide = '/RegisterPageForGuide';
   static const kLoginPageForGuide = '/kLoginPageForGuide';
-static const kEditProfile = '/kEditProfile';
+  static const kEditProfile = '/kEditProfile';
 
+  static const khotelDetails = '/hotelDetails';
+  static const kHotelHomeScreen = '/kHotelHomeScreen';
+ static const kPayment = '/kPayment';
   
 
   static final router = GoRouter(
@@ -57,6 +65,15 @@ static const kEditProfile = '/kEditProfile';
       GoRoute(
         path: kEditProfile,
         builder: (context, state) => const EditProfile(),
+      ),
+
+      GoRoute(
+        path: kHotelHomeScreen,
+        builder: (context, state) => const HotelHomeScreen(),
+      ),
+      GoRoute(
+        path: kPayment,
+        builder: (context, state) => const Payment(),
       ),
     ],
   );

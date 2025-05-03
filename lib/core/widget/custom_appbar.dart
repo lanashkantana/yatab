@@ -21,6 +21,7 @@ class CustomAppbar extends StatelessWidget {
           fontSize: 25.sp,
         ),
         centerTitle: true,
+        
         leading: IconButton(
           icon: Icon(
             FontAwesome5Icon.arrow_left,

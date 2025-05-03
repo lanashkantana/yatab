@@ -24,15 +24,16 @@ class MyApp extends StatelessWidget {
             return MaterialApp.router(
               routerConfig: AppRouter.router,
               debugShowCheckedModeBanner: false,
+
               theme: ThemeData.light().copyWith(
                 scaffoldBackgroundColor: Colors.white,
-                cardColor: Colors.grey.shade200,
+                cardColor: const Color.fromARGB(255, 138, 126, 126),
                 textTheme: GoogleFonts.montserratTextTheme(
                   ThemeData.light().textTheme,
                 ),
               ),
               darkTheme: ThemeData.dark().copyWith(
-                scaffoldBackgroundColor: const Color(0xFF1E1E1E),
+                scaffoldBackgroundColor: const Color.fromARGB(255, 44, 41, 41),
                 cardColor: Colors.grey.shade800,
                 textTheme: GoogleFonts.montserratTextTheme(
                   ThemeData.dark().textTheme,

@@ -1,3 +1,4 @@
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,17 +14,12 @@ class RegisterPageForGuideBody extends StatefulWidget {
   const RegisterPageForGuideBody({super.key});
 
   @override
-  State<RegisterPageForGuideBody> createState() =>
-      _RegisterPageForGuideBodyState();
+  State<RegisterPageForGuideBody> createState() => _RegisterPageForGuideBodyState();
 }
 
 class _RegisterPageForGuideBodyState extends State<RegisterPageForGuideBody> {
-  bool obscureText = false;
-  bool obsecureTextReapet = false;
-
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController verifyPasswordController =
-      TextEditingController();
+  final TextEditingController verifyPasswordController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
@@ -31,19 +27,15 @@ class _RegisterPageForGuideBodyState extends State<RegisterPageForGuideBody> {
   final TextEditingController dateController = TextEditingController();
   final TextEditingController genderController = TextEditingController();
   final TextEditingController nationalityController = TextEditingController();
-  //
-  final TextEditingController yearOfExperienceController =
-      TextEditingController();
+  final TextEditingController yearOfExperienceController = TextEditingController();
 
   final Validation validation = Validation();
-
-  DateTime selectedDate = DateTime.now();
+  final GlobalKey<RegistrationFormState> formKey = GlobalKey<RegistrationFormState>();
 
   @override
   void initState() {
     super.initState();
-    dateController.text =
-        "${selectedDate.day}-${selectedDate.month}-${selectedDate.year}";
+    dateController.text = "";
   }
 
   @override
@@ -55,26 +47,13 @@ class _RegisterPageForGuideBodyState extends State<RegisterPageForGuideBody> {
     lastNameController.dispose();
     phoneNumerController.dispose();
     dateController.dispose();
+    yearOfExperienceController.dispose();
     super.dispose();
-  }
-
-  void toggleVisibility() {
-    setState(() {
-      obscureText = !obscureText;
-    });
-  }
-
-  void toggleVisibilityReapeat() {
-    setState(() {
-      obsecureTextReapet = !obsecureTextReapet;
-    });
   }
 
   @override
   Widget build(BuildContext context) {
-    // File? selectedImage;
     return Scaffold(
-      // extendBodyBehindAppBar: true,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       extendBody: true,
       body: Container(
@@ -90,7 +69,7 @@ class _RegisterPageForGuideBodyState extends State<RegisterPageForGuideBody> {
             children: [
               SizedBox(height: 30.h),
               Padding(
-                padding: EdgeInsets.all(30),
+                padding: const EdgeInsets.all(30),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -103,7 +82,6 @@ class _RegisterPageForGuideBodyState extends State<RegisterPageForGuideBody> {
                       "Create account for Guide",
                       style: TextStyle(fontSize: 15.sp, color: AppColors.white),
                     ),
-                    SizedBox(height: 5.h),
                   ],
                 ),
               ),
@@ -116,16 +94,13 @@ class _RegisterPageForGuideBodyState extends State<RegisterPageForGuideBody> {
                   ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      // Choose photo
-                      10.verticalSpace,
-                      // داخل الـ State
-
-                      // داخل build:
+                      // Registration Form
                       RegistrationForm(
+                        key: formKey, // ✅ Pass key to access image
                         firstNameController: firstNameController,
                         lastNameController: lastNameController,
                         emailController: emailController,
@@ -135,29 +110,25 @@ class _RegisterPageForGuideBodyState extends State<RegisterPageForGuideBody> {
                         dateController: dateController,
                         genderController: genderController,
                         nationalityController: nationalityController,
-                     
-                     
                       ),
-
+                      10.verticalSpace,
+                      // Experience Field
                       CustomFormTextField(
                         keyboardType: TextInputType.number,
                         controller: yearOfExperienceController,
-                        obscureText: obsecureTextReapet,
-                        prefixIcon: Icon(
-                          Icons.date_range_outlined,
-
-                          color: Color(0xFF002E53),
-                        ),
-
-                        labelText: "years ",
-                        hintText: "years Of Experience",
+                        obscureText: false, // ✅ Fixed
+                        prefixIcon: Icon(Icons.calendar_today_outlined, color: Color(0xFF002E53)),
+                        labelText: "Years of Experience",
+                        hintText: "Enter your experience years",
                       ),
-
+                      20.verticalSpace,
+                      // Register Button
                       CustomButton(
                         text: "Register",
                         ontap: () {
-                        
-                        
+                          final formState = formKey.currentState;
+                          File? selectedImage = formState?.selectedImage;
+
                           validation.handleRegister(
                             context: context,
                             email: emailController.text,
@@ -170,29 +141,27 @@ class _RegisterPageForGuideBodyState extends State<RegisterPageForGuideBody> {
                             gender: genderController.text,
                             nationality: nationalityController.text,
                             experienceYears: yearOfExperienceController.text,
-                          
-                            
+                            image: selectedImage, // ✅ Pass image for validation
                           );
                         },
                       ),
-
-                      SizedBox(height: 18.h),
+                      18.verticalSpace,
+                      // Switch to Login
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "Don't have an account?",
-                                   style: TextStyle(fontSize: 16,
-                                   
-                                   
-                                   color:Colors.black,fontWeight: FontWeight.bold),
+                            "Already have an account?",
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                           SizedBox(width: 5.w),
                           InkWell(
                             onTap: () {
-                              GoRouter.of(
-                                context,
-                              ).push(AppRouter.kLoginPageForGuide);
+                              GoRouter.of(context).push(AppRouter.kLoginPageForGuide);
                             },
                             child: Text(
                               "Login",
@@ -213,9 +182,7 @@ class _RegisterPageForGuideBodyState extends State<RegisterPageForGuideBody> {
             ],
           ),
         ),
-        
       ),
-      
     );
   }
 }

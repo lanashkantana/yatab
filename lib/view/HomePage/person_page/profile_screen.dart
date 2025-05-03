@@ -7,17 +7,43 @@ import 'package:test/core/utils/app_image.dart';
 import 'package:test/core/utils/app_router.dart';
 import 'package:test/core/utils/theme_manager.dart';
 import 'package:test/core/widget/custom_aweasome_dialog.dart';
-import 'package:test/view/HomePage/person_page/profile_list_item.dart'; // Import the theme notifier
+import 'package:test/view/HomePage/person_page/profile_list_item.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateMixin {
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 800),
+    )..forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     CustomAwesomeDialog customAweasomeDialog = CustomAwesomeDialog();
+
     List<String> text = [
       "Edit Profile",
-
       "Change Language",
       "Contact Us",
       "Invite a Friend",
@@ -26,37 +52,26 @@ class ProfileScreen extends StatelessWidget {
 
     List<IconData> icon = [
       FontAwesome5Icon.user,
-
       FontAwesome5Icon.language,
       FontAwesome5Icon.question_circle,
       FontAwesome5Icon.user_plus,
       FontAwesome5Icon.sign_out_alt,
     ];
+
     List<VoidCallback> actions = [
       () {
-        // Handle edit profile
         GoRouter.of(context).push(AppRouter.kEditProfile);
-        // Navigate to edit profile screen or show a dialog
       },
-
       () {
         // Handle change language
-        print("Change Language tapped");
-        // Show language options
       },
       () {
         // Handle contact us
-        print("Contact Us tapped");
-        // Navigate to contact us screen or show a dialog
       },
       () {
         // Handle invite a friend
-        print("Invite a Friend tapped");
-        // Show share options
       },
       () {
-        // Handle logout
-
         customAweasomeDialog.displayDialog(
           context: context,
           dialogType: DialogType.question,
@@ -66,12 +81,10 @@ class ProfileScreen extends StatelessWidget {
           },
           btnCancelOnPress: () {},
         );
-
-        // Perform logout action
       },
     ];
 
-    List<bool> hasNavigation = [true, true, true, true, true, false];
+    List<bool> hasNavigation = [true, true, true, true, false];
 
     var profileInfo = Column(
       children: [
@@ -87,8 +100,8 @@ class ProfileScreen extends StatelessWidget {
                 bottom: 0,
                 right: 0,
                 child: InkWell(
-                  onTap: (){
-                        GoRouter.of(context).push(AppRouter.kEditProfile);
+                  onTap: () {
+                    GoRouter.of(context).push(AppRouter.kEditProfile);
                   },
                   child: Container(
                     height: 30.h,
@@ -110,16 +123,16 @@ class ProfileScreen extends StatelessWidget {
         ),
         SizedBox(height: 20.h),
         Text(
-          "Lana Shkantana",
+          "lana shkantana",
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.sp),
         ),
         SizedBox(height: 5.h),
         Text(
           "lanaqitt@gmail.com",
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-            fontWeight: FontWeight.bold,
-            fontSize: 18.sp,
-          ),
+                fontWeight: FontWeight.bold,
+                fontSize: 18.sp,
+              ),
         ),
       ],
     );
@@ -129,25 +142,28 @@ class ProfileScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(width: 20.w),
-
-        /// 🌞 Light mode
         IconButton(
-          icon: Icon(FontAwesome5Icon.sun, size: 30.sp),
+          icon: Icon(
+            size: 30.sp,
+            themeNotifier.value == ThemeMode.light
+                ? FontAwesome5Icon.moon
+                : FontAwesome5Icon.sun,
+          ),
           onPressed: () {
-            themeNotifier.value = ThemeMode.light;
+            themeNotifier.value =
+                themeNotifier.value == ThemeMode.light
+                    ? ThemeMode.dark
+                    : ThemeMode.light;
           },
           color: Theme.of(context).iconTheme.color,
         ),
-
+        SizedBox(width: 20.w),
         profileInfo,
-
-        /// 🌙 Dark mode
+        SizedBox(width: 20.w),
         IconButton(
-          icon: Icon(FontAwesome5Icon.moon, size: 30.sp),
-          onPressed: () {
-            themeNotifier.value = ThemeMode.dark;
-          },
+          icon: Icon(Icons.person, size: 30.sp),
           color: Theme.of(context).iconTheme.color,
+          onPressed: () {},
         ),
         SizedBox(width: 20.w),
       ],
@@ -165,11 +181,39 @@ class ProfileScreen extends StatelessWidget {
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (BuildContext context, int index) {
-                return ProfileListItem(
-                  hasNavigation: hasNavigation[index],
-                  icon: icon[index],
-                  text: text[index],
-                  onTap: actions[index],
+                final animation = Tween<Offset>(
+                  begin: const Offset(0, 1),  // يبدأ من الأسفل
+                  end: Offset.zero,  // ينتهي في الوضع الطبيعي
+                ).animate(
+                  CurvedAnimation(
+                    parent: _controller,
+                    curve: Interval((1 / text.length) * index, 1.0,
+                        curve: Curves.easeOut),
+                  ),
+                );
+
+                final fadeAnimation = Tween<double>(
+                  begin: 0.0,
+                  end: 1.0,
+                ).animate(
+                  CurvedAnimation(
+                    parent: _controller,
+                    curve: Interval((1 / text.length) * index, 1.0,
+                        curve: Curves.easeOut),
+                  ),
+                );
+
+                return SlideTransition(
+                  position: animation,
+                  child: FadeTransition(
+                    opacity: fadeAnimation,
+                    child: ProfileListItem(
+                      hasNavigation: hasNavigation[index],
+                      icon: icon[index],
+                      text: text[index],
+                      onTap: actions[index],
+                    ),
+                  ),
                 );
               },
             ),
@@ -179,5 +223,3 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 }
-
-

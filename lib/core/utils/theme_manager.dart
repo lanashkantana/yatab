@@ -2,4 +2,4 @@
 import 'package:flutter/material.dart';
 
 /// Global notifier to switch between light and dark themes
-final ValueNotifier<ThemeMode> themeNotifier = ValueNotifier(ThemeMode.dark);
+final ValueNotifier<ThemeMode> themeNotifier = ValueNotifier(ThemeMode.light);

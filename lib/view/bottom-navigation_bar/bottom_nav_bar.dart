@@ -30,8 +30,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     HomePage(),
     BookingPage(),
     SearchPage(),
-  
-    HotelPage(),
+    HotelHomeScreen(),
     PersonPage(),
   ];
   @override

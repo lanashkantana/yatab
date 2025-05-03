@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test/core/utils/app_color.dart';
 import 'package:test/core/widget/custom_appBar.dart';
-import 'package:test/core/widget/custom_aweasome_dialog.dart';
 import 'package:test/core/widget/custom_button.dart';
 import 'package:test/view/auth/register_form.dart';
 
@@ -12,10 +11,10 @@ class EditProfile extends StatefulWidget {
   const EditProfile({super.key});
 
   @override
-  _EditProfileState createState() => _EditProfileState();
+  EditProfileState createState() => EditProfileState();
 }
 
-class _EditProfileState extends State<EditProfile> {
+class EditProfileState extends State<EditProfile> {
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
