@@ -1,36 +1,70 @@
-// import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
-// import 'package:test/core/utils/app_theme.dart';
 
-// class TextStyles {
-//   final BuildContext context;
+abstract class Styles {
 
-//   TextStyles(this.context);
 
-//   TextStyle getTitleStyle() {
-//     return Theme.of(context).textTheme.titleLarge!.copyWith(
-//           fontSize: 24,
-//           color: AppTheme.primaryTextColor,
-//         );
-//   }
+static const TextStyle style25=TextStyle(
 
-//   TextStyle getDescriptionStyle() {
-//     return Theme.of(context).textTheme.bodyLarge!.copyWith(
-//           color: AppTheme.secondaryTextColor,
-//         );
-//   }
+color: Colors.black,
+fontSize: 25,
+fontFamily: 'Inter',
+fontWeight: FontWeight.w500,
+height: 0,
 
-//   TextStyle getRegularStyle() {
-//     return Theme.of(context).textTheme.bodyLarge!.copyWith(
-//           fontSize: 16,
-//           color: AppTheme.primaryTextColor,
-//         );
-//   }
 
-//   TextStyle getBoldStyle() {
-//     return Theme.of(context).textTheme.titleMedium!.copyWith(
-//           fontSize: 14,
-//           color: AppTheme.primaryTextColor,
-//         );
-//   }
-// }
+
+);
+static const TextStyle style18=TextStyle(
+
+color: Colors.black,
+fontSize: 18,
+fontFamily: 'Inter',
+fontWeight: FontWeight.w400,
+height: 0,
+
+
+
+);
+static const TextStyle styleBold18=TextStyle(
+
+color: Colors.black,
+fontSize: 18,
+fontFamily: 'Inter',
+fontWeight: FontWeight.w700,
+height: 0,
+
+
+
+);
+
+
+static const TextStyle style24=TextStyle(
+
+color: Colors.black,
+fontSize: 24,
+fontFamily: 'Inter',
+fontWeight: FontWeight.w600,
+height: 0,
+
+
+
+);
+
+static const TextStyle style20=TextStyle(
+
+color: Colors.black,
+fontSize: 20,
+fontFamily: 'Inter',
+fontWeight: FontWeight.w400,
+height: 0,
+
+
+
+);
+
+
+
+
+
+}

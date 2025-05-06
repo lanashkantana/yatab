@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test/core/utils/app_router.dart';
-import 'package:test/core/widget/custom_appbar.dart';
+import 'package:test/core/widget/custom_app_bar.dart';
+
 import 'package:test/view/HomePage/hotel_page/contest_tab_header.dart';
 import 'package:test/view/HomePage/hotel_page/date_room_selector.dart';
 import 'package:test/view/HomePage/hotel_page/filter_bar.dart';
@@ -41,50 +42,58 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
 
   @override
   Widget build(BuildContext context) {
-  final int count = hotelList.length;
+    final int count = hotelList.length;
 
     return Scaffold(
+      appBar: buildAppBar(
+        title: "Hotel Page",
+        onPressed: () {
+          GoRouter.of(context).push(AppRouter.kBottomNavBar);
+        },
+      ),
+
       body: Column(
         children: [
-          CustomAppbar(title: Text("Hotel Page"),onPressed: () =>    
-             GoRouter.of(context).push(AppRouter.kBottomNavBar)),
           Expanded(
             // flex: 100,
             child: NestedScrollView(
-              headerSliverBuilder: (_, __) => [
-                SliverList(
-                  delegate: SliverChildListDelegate([
-                    const SearchBarlist(),
-                    DateRoomSelector(startDate: startDate, endDate: endDate),
-                  ]),
-                ),
-              SliverPersistentHeader(
-  floating: true,
-  pinned: true,
-  delegate: ContestTabHeader(
-    FilterBar(
-      onProvinceSelected: (String province) {
-       setState(() {
-        //  GoRoute.of(context).
-       });
-      },
-    ),
-  ),
-),
-
-              ],
+              headerSliverBuilder:
+                  (_, __) => [
+                    SliverList(
+                      delegate: SliverChildListDelegate([
+                        const SearchBarlist(),
+                        DateRoomSelector(
+                          startDate: startDate,
+                          endDate: endDate,
+                        ),
+                      ]),
+                    ),
+                    SliverPersistentHeader(
+                      floating: true,
+                      pinned: true,
+                      delegate: ContestTabHeader(
+                        FilterBar(
+                          onProvinceSelected: (String province) {
+                            setState(() {
+                              //  GoRoute.of(context).
+                            });
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
               body: ListView.builder(
                 itemCount: count,
                 padding: const EdgeInsets.only(top: 8),
                 itemBuilder: (context, index) {
-                  final animation = Tween<double>(
-                    begin: 0,
-                    end: 1,
-                  ).animate(
+                  final animation = Tween<double>(begin: 0, end: 1).animate(
                     CurvedAnimation(
                       parent: animationController!,
-                      curve: Interval((1 / count) * index, 1.0,
-                          curve: Curves.fastOutSlowIn),
+                      curve: Interval(
+                        (1 / count) * index,
+                        1.0,
+                        curve: Curves.fastOutSlowIn,
+                      ),
                     ),
                   );
                   return HotelListViewItem(
@@ -94,13 +103,11 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                   );
                 },
               ),
-           
             ),
           ),
           // 100.verticalSpace,
-           60.verticalSpace,
+          60.verticalSpace,
         ],
-        
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:test/core/widget/custom_appbar.dart';
+import 'package:test/core/widget/custom_app_bar.dart';
+
 import 'package:test/view/HomePage/hotel_page/home_details/myhotel_page.dart';
 import 'package:test/view/HomePage/hotel_page/hotel_list_model.dart';
 import 'package:test/view/HomePage/hotel_page/hotel_list_view_item.dart';
@@ -37,13 +38,10 @@ class _HomeDetailsState extends State<HomeDetails> with TickerProviderStateMixin
     final int count = hotelList.length;
 
     return Scaffold(
+      appBar: buildAppBar(title: "Hotel details",onPressed:  GoRouter.of(context).pop,),
       extendBody: true,
       body: Column(
         children: [
-          CustomAppbar(
-            title: const Text("Hotel details"),
-            onPressed: () => GoRouter.of(context).pop(),
-          ),
           Expanded(
             child: ListView.builder(
               itemCount: count,

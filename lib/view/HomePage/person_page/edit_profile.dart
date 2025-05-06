@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test/core/utils/app_color.dart';
-import 'package:test/core/widget/custom_appBar.dart';
+import 'package:test/core/widget/custom_app_bar.dart';
 import 'package:test/core/widget/custom_button.dart';
 import 'package:test/view/auth/register_form.dart';
 
@@ -49,18 +49,18 @@ class EditProfileState extends State<EditProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: buildAppBar(
+        title: "Edit Profile",
+        onPressed: () {
+          GoRouter.of(context).pop();
+        },
+      ),
       extendBody: true,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              CustomAppbar(
-                title: Text("Edit Profile"),
-                onPressed: () {
-                  GoRouter.of(context).pop();
-                },
-              ),
               Container(
                 decoration: BoxDecoration(
                   color: AppColors.white,
