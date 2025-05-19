@@ -31,7 +31,7 @@ class _PaymentMethosListViewState extends State<PaymentMethosListView> {
               setState(() {});
             },
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              padding: const EdgeInsets.symmetric(horizontal: 30.0),
               child: PaymentMethoditem(
                 isActive: activeIndex == index,
                 title: paymentMethos[index],
