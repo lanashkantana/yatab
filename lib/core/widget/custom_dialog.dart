@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:test/core/utils/app_style.dart';
-import 'package:test/core/utils/app_theme.dart';
+
 
 class CustomDialog extends StatefulWidget {
   const CustomDialog({

@@ -1,5 +1,7 @@
 import 'package:go_router/go_router.dart';
-import 'package:test/view/HomePage/hotel_page/home_details/home_details.dart';
+import 'package:test/view/HomePage/booking_page/private_tour/private_tour.dart';
+import 'package:test/view/HomePage/booking_page/public_tour/public_page.dart';
+
 
 import 'package:test/view/HomePage/hotel_page/hotel_page.dart';
 import 'package:test/view/HomePage/hotel_page/payment/payment_details_view.dart';
@@ -10,6 +12,7 @@ import 'package:test/view/auth/auth_tourist/register_page_by_tourist_body.dart';
 import 'package:test/view/auth/auth_tourist/selection_page.dart';
 import 'package:test/view/bottom-navigation_bar/bottom_nav_bar.dart';
 import 'package:test/view/onBoarding_page/on_boarding_page.dart';
+import 'package:test/view/splash_page/splash_page.dart';
 
 class AppRouter {
   static const kLoginPageForTourist = '/kLoginPageForTourist';
@@ -29,11 +32,19 @@ class AppRouter {
   static const kHotelHomeScreen = '/kHotelHomeScreen';
  static const kPayment = '/kPayment';
   
+static const kPublicPage = '/kPublicPage';
+static const kPrivatePage = '/kPrivatePage';
+
+
+ 
+
+
+  
 
   static final router = GoRouter(
     routes: [
       GoRoute(path: '/', builder: (context, state) =>
-       const HomeDetails()),
+       const SplachView()),
       GoRoute(
         path: kOnBoardingScreen,
         builder: (context, state) => const Onboarding(),
@@ -73,6 +84,15 @@ class AppRouter {
         path: kPayment,
         builder: (context, state) => const PaymentDetailsView(),
       ),
+      GoRoute(
+        path: kPublicPage,
+        builder: (context, state) => const PublicPage(),
+      ),
+        GoRoute(
+        path: kPrivatePage,
+        builder: (context, state) => const PrivateTour(),
+      ),
+      
     ],
   );
 }

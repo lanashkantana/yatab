@@ -1,13 +1,12 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:test/core/widget/custom_app_bar.dart';
-
 import 'package:test/core/widget/custom_button.dart';
-
 import 'package:test/view/HomePage/hotel_page/payment/payment_mehods_buttom_sheet.dart';
 
 class MyHotelPage extends StatelessWidget {
-  final String imageUrl;
+  final List<String> imageUrl;
   final String hotelName;
   final String location;
   final int pricePerNight;
@@ -36,21 +35,31 @@ class MyHotelPage extends StatelessWidget {
         
             25.verticalSpace,
 
-            ClipRRect(
-              borderRadius: const BorderRadius.only(
-                bottomLeft: Radius.circular(30),
-                bottomRight: Radius.circular(30),
-                topLeft: Radius.circular(30),
-                topRight: Radius.circular(30),
-              ),
-
-              child: Image.asset(
-                imageUrl,
-                width: double.infinity,
-                height: 300.h,
-                fit: BoxFit.fill,
-              ),
-            ),
+            CarouselSlider(
+  options: CarouselOptions(
+    height: 350.h,
+    enlargeCenterPage: true,
+    autoPlay: true,
+    autoPlayInterval: Duration(seconds: 2),
+    aspectRatio: 16 / 9,
+    viewportFraction: 0.8, // تأكد من أن هذه القيمة مناسبة لعرض 3 صور
+  ),
+  items: [
+    // استبدل هذه الصور بالمسارات الصحيحة للصور
+    ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: Image.asset(imageUrl[0], fit: BoxFit.cover),
+    ),
+    ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: Image.asset(imageUrl[1], fit: BoxFit.cover),
+    ),
+    ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: Image.asset(imageUrl[2], fit: BoxFit.cover),
+    ),
+  ],
+),
 
             20.verticalSpace,
             Padding(
@@ -142,7 +151,9 @@ class MyHotelPage extends StatelessWidget {
                   );
                 },
               ),
+
             ),
+            25.verticalSpace,
           ],
         ),
       ),

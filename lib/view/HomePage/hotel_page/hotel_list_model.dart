@@ -1,7 +1,7 @@
 import 'package:test/core/utils/app_image.dart';
 
 class HotelListData {
-String imagePath;
+final List<String> imagePath;
 String titleTxt;
 String subTxt;
 double dist;
@@ -11,7 +11,7 @@ int perNight;
 String description;
 
 HotelListData({
-  this.imagePath='',
+  required this.imagePath,
   this.titleTxt='',
   this.subTxt='',
   this.dist=1.8,
@@ -23,7 +23,11 @@ HotelListData({
 
 static List<HotelListData> hotelList = <HotelListData>[
     HotelListData(
-      imagePath: AssetsData.hotel5,
+      imagePath: [
+        AssetsData.hotel5,AssetsData.hotel4,
+        AssetsData.hotel3,
+        AssetsData.hotel2
+      ],
       titleTxt: 'Grand Royal Hotel',
       subTxt: 'Wembley, London',
       dist: 2.0,
@@ -33,7 +37,11 @@ static List<HotelListData> hotelList = <HotelListData>[
       description:"The ideal place for those looking for a luxurious and tranquil holiday experience with stunning sea views"
     ),
     HotelListData(
-      imagePath: AssetsData.hotel1,
+      imagePath: [
+        AssetsData.hotel5,AssetsData.hotel4,
+        AssetsData.hotel3,
+        AssetsData.hotel2
+      ],
       titleTxt: 'Queen Hotel',
       subTxt: 'Wembley, London',
       dist: 4.0,
@@ -43,7 +51,11 @@ static List<HotelListData> hotelList = <HotelListData>[
       description:"The ideal place for those looking for a luxurious and tranquil holiday experience with stunning sea views"
     ),
     HotelListData(
-      imagePath:AssetsData.hotel3,
+     imagePath: [
+        AssetsData.hotel5,AssetsData.hotel4,
+        AssetsData.hotel3,
+        AssetsData.hotel2
+      ],
       titleTxt: 'Grand Royal Hotel',
       subTxt: 'Wembley, London',
       dist: 3.0,
@@ -53,7 +65,11 @@ static List<HotelListData> hotelList = <HotelListData>[
      description:"The ideal place for those looking for a luxurious and tranquil holiday experience with stunning sea views"
     ),
     HotelListData(
-      imagePath: AssetsData.hotel2,
+    imagePath: [
+        AssetsData.hotel2,AssetsData.hotel4,
+        AssetsData.hotel3,
+        AssetsData.hotel2
+      ],
       titleTxt: 'Queen Hotel',
       subTxt: 'Wembley, London',
       dist: 7.0,
@@ -63,7 +79,11 @@ static List<HotelListData> hotelList = <HotelListData>[
        description:"The ideal place for those looking for a luxurious and tranquil holiday experience with stunning sea views"
     ),
     HotelListData(
-      imagePath:AssetsData.hotel1,
+      imagePath: [
+        AssetsData.hotel5,AssetsData.hotel1,
+        AssetsData.hotel3,
+        AssetsData.hotel2
+      ],
       titleTxt: 'Grand Royal Hotel',
       subTxt: 'Wembley, London',
       dist: 2.0,
