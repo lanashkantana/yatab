@@ -5,7 +5,13 @@ import 'package:test/view/HomePage/hotel_page/hotel_them.dart';
 
 class FilterBar extends StatelessWidget {
   final Function(String) onProvinceSelected;
-  const FilterBar({super.key, required this.onProvinceSelected});
+  final List province=[
+"Damascus",
+"Aleppo",
+"Homs",
+"Latakia"
+  ];
+   FilterBar({super.key, required this.onProvinceSelected});
 
   @override
   Widget build(BuildContext context) {
@@ -26,31 +32,27 @@ class FilterBar extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                  builder: (_) => HomeDetails(),
+                  builder: (_) => HomeDetails(province:value),
                     ),
                   );
                 }
               },
-              items: const [
+              items:  [
                 DropdownMenuItem(
-                  value: 'all',
-                  child: Text('All'),
+                  value: province[0],
+                  child: Text(province[0]),
                 ),
                 DropdownMenuItem(
-                  value: 'damascus',
-                  child: Text('Damascus'),
+                      value: province[1],
+                  child: Text(province[1]),
                 ),
                 DropdownMenuItem(
-                  value: 'aleppo',
-                  child: Text('Aleppo'),
+                   value: province[2],
+                  child: Text(province[2]),
                 ),
                 DropdownMenuItem(
-                  value: 'homs',
-                  child: Text('Homs'),
-                ),
-                DropdownMenuItem(
-                  value: 'latakia',
-                  child: Text('Latakia'),
+                      value: province[3],
+                  child: Text(province[3]),
                 ),
               ],
             ),

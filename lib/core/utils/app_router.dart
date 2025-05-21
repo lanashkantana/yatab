@@ -5,6 +5,8 @@ import 'package:test/view/HomePage/booking_page/public_tour/public_page.dart';
 
 import 'package:test/view/HomePage/hotel_page/hotel_page.dart';
 import 'package:test/view/HomePage/hotel_page/payment/payment_details_view.dart';
+import 'package:test/view/HomePage/person_page/barcode_page.dart';
+import 'package:test/view/HomePage/person_page/chatwithApp.dart';
 import 'package:test/view/HomePage/person_page/edit_profile.dart';
 import 'package:test/view/auth/auth_guide/register_page_by_guide_body.dart';
 import 'package:test/view/auth/auth_tourist/login_page_by_tourist_body.dart';
@@ -35,8 +37,8 @@ class AppRouter {
 static const kPublicPage = '/kPublicPage';
 static const kPrivatePage = '/kPrivatePage';
 
-
- 
+static const kQRCodePage = '/kQRCodePage';
+ static const kChatWithApp = '/kChatWithApp';
 
 
   
@@ -91,6 +93,14 @@ static const kPrivatePage = '/kPrivatePage';
         GoRoute(
         path: kPrivatePage,
         builder: (context, state) => const PrivateTour(),
+      ),
+        GoRoute(
+        path: kQRCodePage,
+        builder: (context, state) => const QRCodePage(),
+      ),
+        GoRoute(
+        path: kChatWithApp,
+        builder: (context, state) => ChatPage(),
       ),
       
     ],

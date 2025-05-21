@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:icons_flutter/icons_flutter.dart';
 import 'package:test/core/utils/app_style.dart';
 
-AppBar buildAppBar({final String? title, final void Function()? onPressed}) {
+AppBar buildAppBar({final String? title, final void Function()? onPressed,final List<Widget>? actions}) {
   return AppBar(
     leading: IconButton(
       icon: Icon(
@@ -18,5 +18,6 @@ AppBar buildAppBar({final String? title, final void Function()? onPressed}) {
 
     backgroundColor: Colors.transparent,
     title: Text(title ?? '', style: Styles.style25),
+    actions: actions,
   );
 }

@@ -16,7 +16,8 @@ class ProfileScreen extends StatefulWidget {
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateMixin {
+class _ProfileScreenState extends State<ProfileScreen>
+    with TickerProviderStateMixin {
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -46,7 +47,7 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
       "Edit Profile",
       "Change Language",
       "Contact Us",
-      "Invite a Friend",
+      "Chat with App",
       "Logout",
     ];
 
@@ -67,10 +68,13 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
       },
       () {
         // Handle contact us
+        GoRouter.of(context).push(AppRouter.kQRCodePage);
       },
       () {
-        // Handle invite a friend
+        //chat with app
+        GoRouter.of(context).push(AppRouter.kChatWithApp);
       },
+
       () {
         customAweasomeDialog.displayDialog(
           context: context,
@@ -130,9 +134,9 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
         Text(
           "lanaqitt@gmail.com",
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-                fontSize: 18.sp,
-              ),
+            fontWeight: FontWeight.bold,
+            fontSize: 18.sp,
+          ),
         ),
       ],
     );
@@ -182,13 +186,16 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (BuildContext context, int index) {
                 final animation = Tween<Offset>(
-                  begin: const Offset(0, 1),  // يبدأ من الأسفل
-                  end: Offset.zero,  // ينتهي في الوضع الطبيعي
+                  begin: const Offset(0, 1), // يبدأ من الأسفل
+                  end: Offset.zero, // ينتهي في الوضع الطبيعي
                 ).animate(
                   CurvedAnimation(
                     parent: _controller,
-                    curve: Interval((1 / text.length) * index, 1.0,
-                        curve: Curves.easeOut),
+                    curve: Interval(
+                      (1 / text.length) * index,
+                      1.0,
+                      curve: Curves.easeOut,
+                    ),
                   ),
                 );
 
@@ -198,8 +205,11 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
                 ).animate(
                   CurvedAnimation(
                     parent: _controller,
-                    curve: Interval((1 / text.length) * index, 1.0,
-                        curve: Curves.easeOut),
+                    curve: Interval(
+                      (1 / text.length) * index,
+                      1.0,
+                      curve: Curves.easeOut,
+                    ),
                   ),
                 );
 

@@ -7,7 +7,8 @@ import 'package:test/view/HomePage/hotel_page/hotel_list_view_item.dart';
 
 
 class HomeDetails extends StatefulWidget {
-  const HomeDetails({super.key});
+ final String province;
+   const HomeDetails({super.key,required this.province});
 
   @override
   State<HomeDetails> createState() => _HomeDetailsState();
@@ -16,6 +17,7 @@ class HomeDetails extends StatefulWidget {
 class _HomeDetailsState extends State<HomeDetails> with TickerProviderStateMixin {
   List<HotelListData> hotelList = HotelListData.hotelList;
   AnimationController? animationController;
+   
 
   @override
   void initState() {
@@ -37,7 +39,7 @@ class _HomeDetailsState extends State<HomeDetails> with TickerProviderStateMixin
     final int count = hotelList.length;
 
     return Scaffold(
-      appBar: buildAppBar(title: "Hotel details",onPressed:  GoRouter.of(context).pop,),
+      appBar: buildAppBar(title: widget.province,onPressed:  GoRouter.of(context).pop,),
       extendBody: true,
       body: Column(
         children: [

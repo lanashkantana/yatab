@@ -20,6 +20,7 @@ class CustomFormTextField extends StatefulWidget {
     this.onTap,
     this.validator,
     this.onChanged,
+    this.onFieldSubmitted
   });
 
   final String hintText;
@@ -36,6 +37,7 @@ class CustomFormTextField extends StatefulWidget {
   final VoidCallback? onTap;
   final String? Function(String?)? validator;
   final Function(String)? onChanged;
+  final Function(String)? onFieldSubmitted;
 
   @override
   State<CustomFormTextField> createState() => _CustomFormTextFieldState();
@@ -47,6 +49,7 @@ class _CustomFormTextFieldState extends State<CustomFormTextField> {
     return Padding(
       padding: const EdgeInsets.all(10),
       child: TextFormField(
+         onFieldSubmitted: widget.onFieldSubmitted,
         validator: widget.validator,
         onTap: widget.onTap,
         readOnly: widget.readOnly,
