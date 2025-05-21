@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test/core/widget/custom_app_bar.dart';
-import 'package:test/view/HomePage/hotel_page/home_details/myhotel_page.dart';
+import 'package:test/view/HomePage/hotel_page/home_details/myhotel_page_details.dart';
 import 'package:test/view/HomePage/hotel_page/hotel_list_model.dart';
 import 'package:test/view/HomePage/hotel_page/hotel_list_view_item.dart';
 
@@ -69,7 +69,7 @@ class _HomeDetailsState extends State<HomeDetails> with TickerProviderStateMixin
                           hotelName: hotel.titleTxt,
                           location: hotel.subTxt,
                           pricePerNight: hotel.perNight,
-                          rating: hotel.rating,
+                     
                           description: hotel.description,
                         ),
                       ),

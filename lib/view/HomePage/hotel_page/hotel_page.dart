@@ -3,10 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test/core/utils/app_router.dart';
 import 'package:test/core/widget/custom_app_bar.dart';
-
 import 'package:test/view/HomePage/hotel_page/contest_tab_header.dart';
 import 'package:test/view/HomePage/hotel_page/date_room_selector.dart';
 import 'package:test/view/HomePage/hotel_page/filter_bar.dart';
+import 'package:test/view/HomePage/hotel_page/home_details/myhotel_page_details.dart';
 import 'package:test/view/HomePage/hotel_page/hotel_list_model.dart';
 import 'package:test/view/HomePage/hotel_page/hotel_list_view_item.dart';
 import 'package:test/view/HomePage/hotel_page/search_bar.dart';
@@ -96,10 +96,28 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                       ),
                     ),
                   );
-                  return HotelListViewItem(
-                    hotelData: hotelList[index],
-                    animation: animation,
-                    controller: animationController!,
+                  return InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder:
+                              (context) => MyHotelPage(
+                                imageUrl: hotelList[index].imagePath,
+                                hotelName: hotelList[index].titleTxt,
+                                location: hotelList[index].subTxt,
+                                pricePerNight: hotelList[index].perNight,
+
+                                description: hotelList[index].description,
+                              ),
+                        ),
+                      );
+                    },
+
+                    child: HotelListViewItem(
+                      hotelData: hotelList[index],
+                      animation: animation,
+                      controller: animationController!,
+                    ),
                   );
                 },
               ),

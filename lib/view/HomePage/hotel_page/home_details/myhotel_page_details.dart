@@ -10,7 +10,7 @@ class MyHotelPage extends StatelessWidget {
   final String hotelName;
   final String location;
   final int pricePerNight;
-  final double rating;
+
   final String description;
 
   const MyHotelPage({
@@ -19,47 +19,50 @@ class MyHotelPage extends StatelessWidget {
     required this.hotelName,
     required this.location,
     required this.pricePerNight,
-    required this.rating,
+   
     required this.description,
   });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(title: "Grand Royal Hotel",onPressed:    Navigator.of(context).pop),
+      appBar: buildAppBar(
+        title: hotelName,
+        onPressed: Navigator.of(context).pop,
+      ),
       extendBody: true,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-        
             25.verticalSpace,
 
             CarouselSlider(
-  options: CarouselOptions(
-    height: 350.h,
-    enlargeCenterPage: true,
-    autoPlay: true,
-    autoPlayInterval: Duration(seconds: 2),
-    aspectRatio: 16 / 9,
-    viewportFraction: 0.8, // تأكد من أن هذه القيمة مناسبة لعرض 3 صور
-  ),
-  items: [
-    // استبدل هذه الصور بالمسارات الصحيحة للصور
-    ClipRRect(
-      borderRadius: BorderRadius.circular(20),
-      child: Image.asset(imageUrl[0], fit: BoxFit.cover),
-    ),
-    ClipRRect(
-      borderRadius: BorderRadius.circular(20),
-      child: Image.asset(imageUrl[1], fit: BoxFit.cover),
-    ),
-    ClipRRect(
-      borderRadius: BorderRadius.circular(20),
-      child: Image.asset(imageUrl[2], fit: BoxFit.cover),
-    ),
-  ],
-),
+              options: CarouselOptions(
+                height: 350.h,
+                enlargeCenterPage: true,
+                autoPlay: true,
+                autoPlayInterval: Duration(seconds: 2),
+                aspectRatio: 16 / 9,
+                viewportFraction:
+                    0.8, // تأكد من أن هذه القيمة مناسبة لعرض 3 صور
+              ),
+              items: [
+                // استبدل هذه الصور بالمسارات الصحيحة للصور
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Image.asset(imageUrl[0], fit: BoxFit.cover),
+                ),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Image.asset(imageUrl[1], fit: BoxFit.cover),
+                ),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Image.asset(imageUrl[2], fit: BoxFit.cover),
+                ),
+              ],
+            ),
 
             20.verticalSpace,
             Padding(
@@ -94,10 +97,10 @@ class MyHotelPage extends StatelessWidget {
                     return Icon(Icons.star, color: Colors.green);
                   }),
                   20.verticalSpace,
-                  Text(
-                    '($rating/5)',
-                    style: TextStyle(color: Colors.grey[600]),
-                  ),
+                  // Text(
+                  //   '($rating/5)',
+                  //   style: TextStyle(color: Colors.grey[600]),
+                  // ),
                 ],
               ),
             ),
@@ -151,7 +154,6 @@ class MyHotelPage extends StatelessWidget {
                   );
                 },
               ),
-
             ),
             25.verticalSpace,
           ],

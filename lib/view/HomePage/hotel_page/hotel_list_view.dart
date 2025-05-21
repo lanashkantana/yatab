@@ -120,51 +120,7 @@ class _HotelListViewState extends State<HotelListView> {
                                             ))
                                           ],
                                         ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 4),
-                                          child: Row(
-                                            children: <Widget>[
-                                              RatingBar(
-                                                ratingWidget: RatingWidget(
-                                                  full: Icon(
-                                                    Icons.star_rate_rounded,
-                                                    color: HotelTheme
-                                                            .buildLightTheme()
-                                                        .primaryColor,
-                                                  ),
-                                                  half: Icon(
-                                                    Icons.star_half_rounded,
-                                                    color: HotelTheme
-                                                            .buildLightTheme()
-                                                        .primaryColor,
-                                                  ),
-                                                  empty: Icon(
-                                                    Icons.star_border_rounded,
-                                                    color: HotelTheme
-                                                            .buildLightTheme()
-                                                        .primaryColor,
-                                                  ),
-                                                ),
-                                                onRatingUpdate: (value) {},
-                                                itemPadding: EdgeInsets.zero,
-                                                initialRating:
-                                                    widget.hotelData!.rating,
-                                                direction: Axis.horizontal,
-                                                allowHalfRating: true,
-                                                itemCount: 5,
-                                                itemSize: 24,
-                                              ),
-                                              Text(
-                                                '${widget.hotelData!.reviews} Reviews',
-                                                style: TextStyle(
-                                                    fontSize: 14,
-                                                    color: Colors.grey
-                                                        .withOpacity(0.8)),
-                                              )
-                                            ],
-                                          ),
-                                        )
+                                     
                                       ],
                                     ),
                                   ),

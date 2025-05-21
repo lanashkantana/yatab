@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:test/view/HomePage/hotel_page/home_details/home_details.dart';
+import 'package:test/view/HomePage/hotel_page/home_details/province_details.dart';
 import 'package:test/view/HomePage/hotel_page/hotel_them.dart';
 
 class FilterBar extends StatelessWidget {
