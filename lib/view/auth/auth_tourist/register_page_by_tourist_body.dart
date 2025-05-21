@@ -7,6 +7,7 @@ import 'package:test/core/utils/app_color.dart';
 import 'package:test/core/utils/app_router.dart';
 import 'package:test/core/widget/custom_button.dart';
 import 'package:test/core/widget/validation.dart';
+import 'package:test/generated/l10n.dart';
 import 'package:test/view/auth/register_form.dart';
 
 class RegisterPageByTouristBody extends StatefulWidget {
@@ -158,7 +159,7 @@ class _RegisterPageByTouristBodyState extends State<RegisterPageByTouristBody> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "Don't have an account?",
+                            "${S.of(context).Do_You_have_an_account}?",
                             style: TextStyle(
                               fontSize: 16,
                               color:
@@ -173,7 +174,7 @@ class _RegisterPageByTouristBodyState extends State<RegisterPageByTouristBody> {
                               ).push(AppRouter.kLoginPageForTourist);
                             },
                             child: Text(
-                              "Login",
+                              S.of(context).Login,
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: AppColors.lightBlue,

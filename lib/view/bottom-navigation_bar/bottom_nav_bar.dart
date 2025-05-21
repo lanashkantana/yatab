@@ -39,24 +39,27 @@ class _BottomNavBarState extends State<BottomNavBar> {
       top: false,
       child: Scaffold(
         extendBody: true,
-        bottomNavigationBar: Theme(
-          data: Theme.of(
-            context,
-          ).copyWith(iconTheme: IconThemeData(color: AppColors.black)),
-          child: CurvedNavigationBar(
-            items: items,
-            backgroundColor: Colors.transparent,
-            buttonBackgroundColor: AppColors.lightgrey,
-            index: index,
-            height: 59.h,
-            animationCurve: Curves.easeIn,
-            animationDuration: Duration(milliseconds: 300),
-            onTap: (int selectedIndex) {
-              setState(() {
-                index = selectedIndex;
-              });
-            },
-            color: Color(0xff333333),
+        bottomNavigationBar: Directionality(
+          textDirection: TextDirection.ltr,
+          child: Theme(
+            data: Theme.of(
+              context,
+            ).copyWith(iconTheme: IconThemeData(color: AppColors.black)),
+            child: CurvedNavigationBar(
+              items: items,
+              backgroundColor: Colors.transparent,
+              buttonBackgroundColor: AppColors.lightgrey,
+              index: index,
+              height: 59.h,
+              animationCurve: Curves.easeIn,
+              animationDuration: Duration(milliseconds: 300),
+              onTap: (int selectedIndex) {
+                setState(() {
+                  index = selectedIndex;
+                });
+              },
+              color: Color(0xff333333),
+            ),
           ),
         ),
         body: screens[index],

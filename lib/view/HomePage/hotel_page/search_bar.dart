@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:test/generated/l10n.dart';
 import 'package:test/view/HomePage/hotel_page/hotel_them.dart';
 
 class SearchBarlist extends StatelessWidget {
@@ -25,11 +26,11 @@ class SearchBarlist extends StatelessWidget {
                   ),
                 ],
               ),
-              child: const TextField(
+              child:  TextField(
                 style: TextStyle(fontSize: 18),
                 decoration: InputDecoration(
                   border: InputBorder.none,
-                  hintText: "Search for Hotel",
+                  hintText: S.of(context).Search_for_Hotel,
                 ),
               ),
             ),

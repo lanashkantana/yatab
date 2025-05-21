@@ -8,6 +8,7 @@ import 'package:test/core/utils/app_router.dart';
 import 'package:test/core/widget/custom_button.dart';
 import 'package:test/core/widget/custom_text_field.dart';
 import 'package:test/core/widget/validation.dart';
+import 'package:test/generated/l10n.dart';
 import 'package:test/view/auth/register_form.dart';
 
 class RegisterPageForGuideBody extends StatefulWidget {
@@ -151,7 +152,7 @@ class _RegisterPageForGuideBodyState extends State<RegisterPageForGuideBody> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "Already have an account?",
+                          "${S.of(context).Do_You_have_an_account}?",
                             style: TextStyle(
                               fontSize: 16,
                               color: Colors.black,
@@ -164,7 +165,7 @@ class _RegisterPageForGuideBodyState extends State<RegisterPageForGuideBody> {
                               GoRouter.of(context).push(AppRouter.kLoginPageForGuide);
                             },
                             child: Text(
-                              "Login",
+                            S.of(context).Login,
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: AppColors.lightBlue,

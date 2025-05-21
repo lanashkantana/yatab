@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test/core/utils/app_router.dart';
 import 'package:test/core/widget/custom_app_bar.dart';
+import 'package:test/generated/l10n.dart';
 import 'package:test/view/HomePage/hotel_page/contest_tab_header.dart';
 import 'package:test/view/HomePage/hotel_page/date_room_selector.dart';
 import 'package:test/view/HomePage/hotel_page/filter_bar.dart';
@@ -46,7 +47,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
 
     return Scaffold(
       appBar: buildAppBar(
-        title: "Hotel Page",
+        title:S.of(context).Hotel_Page,
         onPressed: () {
           GoRouter.of(context).push(AppRouter.kBottomNavBar);
         },

@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test/core/utils/app_color.dart';
 import 'package:test/core/widget/custom_app_bar.dart';
 import 'package:test/core/widget/custom_button.dart';
+import 'package:test/generated/l10n.dart';
 import 'package:test/view/auth/register_form.dart';
 
 class EditProfile extends StatefulWidget {
@@ -88,7 +89,7 @@ class EditProfileState extends State<EditProfile> {
                         nationalityController: nationalityController,
                       ),
                       CustomButton(
-                        text: "Update",
+                        text: S.of(context).update,
                         ontap: () {
                           GoRouter.of(context).pop();
                         },

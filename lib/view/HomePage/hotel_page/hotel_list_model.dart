@@ -15,7 +15,6 @@ class HotelListData {
     this.titleTxt = '',
     this.subTxt = '',
     this.dist = 1.8,
-
     this.reviews = 80,
     this.perNight = 180,
     this.description = '',

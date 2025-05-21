@@ -4,10 +4,10 @@ import 'package:go_router/go_router.dart';
 import 'package:test/core/utils/app_color.dart';
 import 'package:test/core/utils/app_image.dart';
 import 'package:test/core/utils/app_router.dart';
-
 import 'package:test/core/widget/custom_button.dart';
 import 'package:test/core/widget/custom_text_field.dart';
 import 'package:test/core/widget/validation.dart';
+import 'package:test/generated/l10n.dart';
 
 ///////
 
@@ -182,7 +182,7 @@ class _LoginPageByTouristBodyState extends State<LoginPageByTouristBody> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "Don't Have an Account?",
+                            "${S.of(context).Dont_Have_an_Account}?",
                             style: TextStyle(fontSize: 16),
                           ),
                           SizedBox(width: 5.w),
@@ -193,7 +193,7 @@ class _LoginPageByTouristBodyState extends State<LoginPageByTouristBody> {
                               ).push(AppRouter.kRegisterPageForTourist);
                             },
                             child: Text(
-                              "Register",
+                              S.of(context).Register,
                               style: TextStyle(
                                 color: AppColors.lightBlue,
                                 fontSize: 16,

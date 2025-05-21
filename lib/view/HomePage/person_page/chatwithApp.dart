@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 import 'package:test/core/widget/custom_app_bar.dart';
 import 'package:test/core/widget/custom_text_field.dart';
+import 'package:test/generated/l10n.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({super.key});
@@ -204,7 +205,7 @@ fontWeight: FontWeight.bold,
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(
-        title: " Chat with App",
+        title: S.of(context).appBar_chat,
         onPressed: () => GoRouter.of(context).pop(),
         actions: [
           IconButton(
@@ -251,7 +252,7 @@ fontWeight: FontWeight.bold,
                           ),
                         ],
                       ),
-                      child: CustomFormTextField(hintText: 'write a message', obscureText: false, controller: _controller, 
+                      child: CustomFormTextField(hintText: S.of(context).write_message, obscureText: false, controller: _controller, 
                       keyboardType:TextInputType.text,onFieldSubmitted: _sendMessage),
                       
                       

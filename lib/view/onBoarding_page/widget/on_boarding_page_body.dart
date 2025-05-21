@@ -6,6 +6,7 @@ import 'package:test/core/utils/app_color.dart';
 import 'package:test/core/utils/app_image.dart';
 import 'package:test/core/utils/app_router.dart';
 import 'package:test/core/widget/custom_button.dart';
+import 'package:test/generated/l10n.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
@@ -15,26 +16,27 @@ class OnboardingPage extends StatefulWidget {
 }
 
 class _OnboardingPageState extends State<OnboardingPage> {
-  List title = [
-    "Life is short and the world is ",
-    "It's a big world out there go ",
-    "Your dream holiday is ",
+ 
+  PageController controller = PageController();
+  @override
+  Widget build(BuildContext context) {
+     List title = [
+    S.of(context).Life_is_short_and_the_world_is,
+    S.of(context).It_big_world_out_there_go,
+    S.of(context).Your_dream_holiday_is,
   ];
-  List subtitle = ["wide", "explore", "waiting"];
+  List subtitle = [S.of(context).wide, S.of(context).explore, S.of(context).waiting];
   List desc = [
-    "At Friends tours and travel, we customize reliable and trutworthy educational tours to destinations ",
-    "To get the best of your adventure you just need to leave and go where you like. we are waiting for you",
-    "To get the best of your adventure you just need to leave and go where you like. we are waiting for you",
+    S.of(context).desc_onbarding1,
+    S.of(context).desc_onbarding2,
+    S.of(context).desc_onbarding2,
   ];
   List images = [
     AssetsData.onBoarding1,
     AssetsData.onBoarding2,
     AssetsData.onBoarding3,
   ];
-  List textbut = ["Get Started", "Next", "Next"];
-  PageController controller = PageController();
-  @override
-  Widget build(BuildContext context) {
+  List textbut = [S.of(context).get_Started,S.of(context).next,S.of(context).next];
     return PageView.builder(
       itemCount: images.length,
       controller: controller,
@@ -56,14 +58,18 @@ class _OnboardingPageState extends State<OnboardingPage> {
               child: RichText(
                 textAlign: TextAlign.center,
                 text: TextSpan(
+                  
                   style: TextStyle(
                     fontSize: 30.sp,
                     fontWeight: FontWeight.bold,
-
                     color: Colors.black,
                   ),
                   children: [
                     TextSpan(text: title[index]),
+                    ///اريد اضافة مساحة  بالعرض sizedbox(width:5)
+                     WidgetSpan(
+      child: SizedBox(width: 5.w), // 👈 هنا المسافة العرضية المطلوبة
+    ),
                     TextSpan(
                       text: subtitle[index],
                       style: TextStyle(
@@ -103,21 +109,24 @@ class _OnboardingPageState extends State<OnboardingPage> {
               ),
             ),
             SizedBox(height: 38.h),
-            CustomButton(
-              text: textbut[index],
-              ontap: () {
-                if (index < images.length - 1) {
-                  controller.animateToPage(
-                    index + 1,
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.easeInOut,
-                  );
-                } else {
-                  GoRouter.of(
-                    context,
-                  ).pushReplacement(AppRouter.kSelectionPage);
-                }
-              },
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: CustomButton(
+                text: textbut[index],
+                ontap: () {
+                  if (index < images.length - 1) {
+                    controller.animateToPage(
+                      index + 1,
+                      duration: const Duration(milliseconds: 500),
+                      curve: Curves.easeInOut,
+                    );
+                  } else {
+                    GoRouter.of(
+                      context,
+                    ).pushReplacement(AppRouter.kSelectionPage);
+                  }
+                },
+              ),
             ),
           ],
         );

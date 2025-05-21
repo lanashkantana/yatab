@@ -7,6 +7,7 @@ import 'package:test/core/utils/app_router.dart';
 import 'package:test/core/widget/custom_button.dart';
 import 'package:test/core/widget/custom_text_field.dart';
 import 'package:test/core/widget/validation.dart';
+import 'package:test/generated/l10n.dart';
 
 class LoginPageForGuideBody extends StatefulWidget {
   const LoginPageForGuideBody({super.key});
@@ -179,7 +180,7 @@ class _LoginPageForGuideBodyState extends State<LoginPageForGuideBody> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "Don't Have an Account?",
+                            "${S.of(context).Dont_Have_an_Account}?",
                             style: TextStyle(fontSize: 16,color:Colors.black,
                             fontWeight: FontWeight.bold),
                           ),
@@ -191,7 +192,7 @@ class _LoginPageForGuideBodyState extends State<LoginPageForGuideBody> {
                               ).push(AppRouter.kRegisterPageForGuide);
                             },
                             child: Text(
-                              "Register",
+                               S.of(context).Register,
                               style: TextStyle(
                                 color: AppColors.lightBlue,
                                 fontSize: 16,

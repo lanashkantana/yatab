@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:test/core/widget/custom_app_bar.dart';
 import 'package:test/core/widget/custom_button.dart';
+import 'package:test/generated/l10n.dart';
 import 'package:test/view/HomePage/payment/payment_mehods_buttom_sheet.dart';
 
 class MyHotelPage extends StatelessWidget {
@@ -108,7 +109,7 @@ class MyHotelPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
-                "\$${pricePerNight.toStringAsFixed(2)} / Per night",
+                "\$${pricePerNight.toStringAsFixed(2)} / ${     S.of(context).Per_night}",
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
@@ -120,7 +121,7 @@ class MyHotelPage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
 
               child: Text(
-                "Description:",
+                S.of(context).Description,
                 style: TextStyle(
                   fontSize: 20,
                   color: Colors.black,

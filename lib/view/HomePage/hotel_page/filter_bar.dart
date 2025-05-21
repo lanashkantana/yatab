@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:test/generated/l10n.dart';
 import 'package:test/view/HomePage/hotel_page/home_details/province_details.dart';
 import 'package:test/view/HomePage/hotel_page/hotel_them.dart';
 
 class FilterBar extends StatelessWidget {
   final Function(String) onProvinceSelected;
-  final List province=[
-"Damascus",
-"Aleppo",
-"Homs",
-"Latakia"
-  ];
+
    FilterBar({super.key, required this.onProvinceSelected});
 
   @override
   Widget build(BuildContext context) {
+    
+      final List province=[
+     S.of(context).Damascus,
+      S.of(context).Aleppo,
+       S.of(context).Homs,
+        S.of(context).Latakia,
+  ];
     return Container(
       color: HotelTheme.buildLightTheme().cardColor,
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
@@ -23,7 +26,7 @@ class FilterBar extends StatelessWidget {
           Expanded(
             child: DropdownButton<String>(
               value: null,
-              hint: Text("Select Province"),
+              hint: Text(     S.of(context).Choose_Date),
               isExpanded: true,
               underline: Container(),
               onChanged: (value) {

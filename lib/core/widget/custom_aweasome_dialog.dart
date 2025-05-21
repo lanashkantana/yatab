@@ -1,6 +1,7 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:test/generated/l10n.dart';
 
 class CustomAwesomeDialog {
   void displayDialog({
@@ -25,7 +26,8 @@ class CustomAwesomeDialog {
       desc: desc,
       btnOkOnPress: btnOkOnPress,
       btnCancelOnPress: btnCancelOnPress,
-
+      btnCancelText: S.of(context).cancel,
+      btnOkText: S.of(context).ok,
       btnOkColor: Colors.blue,
       transitionAnimationDuration: Duration(milliseconds: 500),
       dialogBorderRadius: BorderRadius.circular(40),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:test/core/utils/app_style.dart';
+import 'package:test/generated/l10n.dart';
 import 'package:test/view/HomePage/payment/card_item_info.dart';
 import 'package:test/view/HomePage/payment/custom_bardcode_widget.dart';
 import 'package:test/view/HomePage/payment/payment_item_info.dart';
@@ -25,16 +26,16 @@ class ThankYouCard extends StatelessWidget {
         padding: const EdgeInsets.only(top: 50 + 16, left: 22, right: 22),
         child: Column(
           children: [
-            Text("Thank You!", style: Styles.style25),
-            Text("Your transaction was successful", style: Styles.style20),
+            Text("${S.of(context).Thank_You}!", style: Styles.style25),
+            Text(S.of(context).successful, style: Styles.style20),
             SizedBox(height: 42),
-            PaymentItemInfo(title: "Date", value: formattedDate),
+            PaymentItemInfo(title: S.of(context).Date, value: formattedDate),
             SizedBox(height: 20),
-            PaymentItemInfo(title: "Time", value: formattedTime),
+            PaymentItemInfo(title: S.of(context).Time, value: formattedTime),
             SizedBox(height: 20),
-            PaymentItemInfo(title: "From ", value: cardHolderName),
+            PaymentItemInfo(title: S.of(context).From, value: cardHolderName),
             Divider(thickness: 2, height: 70),
-            TotalPrice(title: "Total", price: r"$50.97"),
+            TotalPrice(title: S.of(context).Total, price: r"$50.97"),
             SizedBox(height: 20),
             CardItemInfo(),
             Spacer(),

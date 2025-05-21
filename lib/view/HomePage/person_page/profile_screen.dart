@@ -7,7 +7,9 @@ import 'package:test/core/utils/app_image.dart';
 import 'package:test/core/utils/app_router.dart';
 import 'package:test/core/utils/theme_manager.dart';
 import 'package:test/core/widget/custom_aweasome_dialog.dart';
+import 'package:test/generated/l10n.dart';
 import 'package:test/view/HomePage/person_page/profile_list_item.dart';
+import 'package:test/view/HomePage/person_page/show_language_dialog.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -44,11 +46,11 @@ class _ProfileScreenState extends State<ProfileScreen>
     CustomAwesomeDialog customAweasomeDialog = CustomAwesomeDialog();
 
     List<String> text = [
-      "Edit Profile",
-      "Change Language",
-      "Contact Us",
-      "Chat with App",
-      "Logout",
+      S.of(context).EditProfile,
+      S.of(context).ChangeLanguage,
+      S.of(context).ContactUs,
+      S.of(context).ChatwithApp,
+      S.of(context).Logout,
     ];
 
     List<IconData> icon = [
@@ -65,6 +67,8 @@ class _ProfileScreenState extends State<ProfileScreen>
       },
       () {
         // Handle change language
+     
+    showLanguageDialog(context);     
       },
       () {
         // Handle contact us
@@ -79,7 +83,7 @@ class _ProfileScreenState extends State<ProfileScreen>
         customAweasomeDialog.displayDialog(
           context: context,
           dialogType: DialogType.question,
-          title: "Are You Sure you want to logout",
+          title: S.of(context).Are_You_Sure_you_want_to_logout,
           btnOkOnPress: () {
             GoRouter.of(context).push(AppRouter.kLoginPageForTourist);
           },
@@ -127,12 +131,12 @@ class _ProfileScreenState extends State<ProfileScreen>
         ),
         SizedBox(height: 20.h),
         Text(
-          "lana shkantana",
+           S.of(context).name,
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.sp),
         ),
         SizedBox(height: 5.h),
         Text(
-          "lanaqitt@gmail.com",
+            S.of(context).email,
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
             fontWeight: FontWeight.bold,
             fontSize: 18.sp,
@@ -147,11 +151,14 @@ class _ProfileScreenState extends State<ProfileScreen>
       children: [
         SizedBox(width: 20.w),
         IconButton(
-          icon: Icon(
-            size: 30.sp,
-            themeNotifier.value == ThemeMode.light
-                ? FontAwesome5Icon.moon
-                : FontAwesome5Icon.sun,
+          icon: Directionality(
+             textDirection: TextDirection.ltr,
+            child: Icon(
+              size: 30.sp,
+              themeNotifier.value == ThemeMode.light
+                  ? FontAwesome5Icon.moon
+                  : FontAwesome5Icon.sun,
+            ),
           ),
           onPressed: () {
             themeNotifier.value =
@@ -164,10 +171,13 @@ class _ProfileScreenState extends State<ProfileScreen>
         SizedBox(width: 20.w),
         profileInfo,
         SizedBox(width: 20.w),
-        IconButton(
-          icon: Icon(Icons.person, size: 30.sp),
-          color: Theme.of(context).iconTheme.color,
-          onPressed: () {},
+        Directionality(
+           textDirection: TextDirection.rtl,
+          child: IconButton(
+            icon: Icon(Icons.person, size: 30.sp),
+            color: Theme.of(context).iconTheme.color,
+            onPressed: () {},
+          ),
         ),
         SizedBox(width: 20.w),
       ],
@@ -233,3 +243,5 @@ class _ProfileScreenState extends State<ProfileScreen>
     );
   }
 }
+
+

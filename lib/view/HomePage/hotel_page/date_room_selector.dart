@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:test/generated/l10n.dart';
 
 class DateRoomSelector extends StatelessWidget {
   final DateTime startDate;
@@ -23,7 +24,7 @@ class DateRoomSelector extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Choose Date",
+                      S.of(context).Choose_Date,
                   style: TextStyle(
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w100,
@@ -53,7 +54,7 @@ class DateRoomSelector extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Number of Rooms',
+                        S.of(context).Number_of_Rooms,
                     style: TextStyle(
                       fontWeight: FontWeight.w100,
                       fontSize: 16.sp,
@@ -62,7 +63,7 @@ class DateRoomSelector extends StatelessWidget {
                   ),
                   SizedBox(height: 8.h),
                   Text(
-                    '1 Room - 2 Adults',
+                         S.of(context).Room_Adults,
                     style: TextStyle(
                       fontWeight: FontWeight.w100,
                       fontSize: 16.sp,
