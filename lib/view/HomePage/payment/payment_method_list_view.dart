@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test/view/HomePage/hotel_page/payment/payment_mothod_item.dart';
+import 'package:test/view/HomePage/payment/payment_mothod_item.dart';
 
 
 

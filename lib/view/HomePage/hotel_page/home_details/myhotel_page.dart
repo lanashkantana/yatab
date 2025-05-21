@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:test/core/widget/custom_app_bar.dart';
 import 'package:test/core/widget/custom_button.dart';
-import 'package:test/view/HomePage/hotel_page/payment/payment_mehods_buttom_sheet.dart';
+import 'package:test/view/HomePage/payment/payment_mehods_buttom_sheet.dart';
 
 class MyHotelPage extends StatelessWidget {
   final List<String> imageUrl;

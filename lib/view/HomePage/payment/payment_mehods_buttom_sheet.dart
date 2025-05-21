@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test/core/utils/app_router.dart';
 import 'package:test/core/widget/custom_button.dart';
-import 'package:test/view/HomePage/hotel_page/payment/payment_method_list_view.dart';
+import 'package:test/view/HomePage/payment/payment_method_list_view.dart';
 
 
 class PaymentMethodsBottomSheet extends StatelessWidget {

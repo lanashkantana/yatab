@@ -4,7 +4,7 @@ import 'package:test/view/HomePage/booking_page/public_tour/public_page.dart';
 
 
 import 'package:test/view/HomePage/hotel_page/hotel_page.dart';
-import 'package:test/view/HomePage/hotel_page/payment/payment_details_view.dart';
+import 'package:test/view/HomePage/payment/payment_details_view.dart';
 import 'package:test/view/HomePage/person_page/barcode_page.dart';
 import 'package:test/view/HomePage/person_page/chatwithApp.dart';
 import 'package:test/view/HomePage/person_page/edit_profile.dart';
